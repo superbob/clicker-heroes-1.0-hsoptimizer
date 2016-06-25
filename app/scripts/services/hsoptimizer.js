@@ -100,18 +100,6 @@ angular.module('chRotTranscendApp')
           }).filter(ancient => ancient.optimizedLevel !== undefined);
         };
 
-        // const nsum = fn => {
-        //   return n => {
-        //     let res = 0;
-        //     for (let i = 0; i < n; i++) {
-        //       res += fn(i+1);
-        //     }
-        //     return res;
-        //   }
-        // };
-
-        // TODO implement formula from: http://math.stackexchange.com/questions/1393811/sum-of-1-5-powers-of-natural-numbers
-
         const getCost = function getCost(ancientLevels, chorgorlothLevel) {
           const ancientCostMultiplier = Math.pow(0.95, chorgorlothLevel);
 

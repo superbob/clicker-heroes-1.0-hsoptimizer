@@ -8,63 +8,39 @@
  * Service in the chRotTranscendApp.
  */
 angular.module('chRotTranscendApp')
-  .service('mechanics', function () {
-    const polynomial15 = n => Math.ceil(Math.pow(n, 1.5)); //unit form
-    // const nsum = fn => {
-    //   return n => {
-    //     let res = 0;
-    //     for (let i = 0; i < n; i++) {
-    //       res += fn(i+1);
-    //     }
-    //     return res;
-    //   }
-    // };
-    // // TODO use approximation such as in calc or https://kepow.org/clickerheroes
-    // const polynomial15 = nsum(n => Math.ceil(Math.pow(n, 1.5)));
-
-    const linear       = n => n; //unit form
-    // const linear       = n => n * (n + 1) / 2;
-    const constant     = () => 1; //unit form
-    // const constant     = n => n;
-    // const linearThird  = n => Math.ceil(n / 3);
-    // const cubic        = n => Math.pow(n, 3);
-    const exponential  = n => Math.pow(2, n); //unit form
-    // const exponential  = n => Math.pow(2, n + 1) - 1;
-
-    // Update ancient prices formulas (mostly done)
-    // https://kepow.org/clickerheroes/data/ClickerHeroes_v6575.js
+  .service('mechanics', ['maths', function (maths) {
     // Khrysos, Thusia, Pluto and Iris don't exist anymore after transcending.
     // They should be reintroduced in a pre-transcendent mode
     const ancients = {
-      "Solomon":      {id: "3",  cost: polynomial15},
-    	"Libertas":     {id: "4",  cost: linear},
-    	"Siyalatas":    {id: "5",  cost: linear},
+      "Solomon":      {id: "3",  cost: maths.polynomial1_5.unit},
+      "Libertas":     {id: "4",  cost: maths.linear.unit},
+      "Siyalatas":    {id: "5",  cost: maths.linear.unit},
       // Khrysos "6", quadratic
       // Thusia "7", quadratic
-      "Mammon":       {id: "8",  cost: linear},
-      "Mimzee":       {id: "9",  cost: linear},
+      "Mammon":       {id: "8",  cost: maths.linear.unit},
+      "Mimzee":       {id: "9",  cost: maths.linear.unit},
       // Pluto "10", linear
-      "Dogcog":       {id: "11", cost: exponential},
-    	"Fortuna":      {id: "12", cost: exponential},
-    	"Atman":        {id: "13", cost: exponential},
-    	"Dora":         {id: "14", cost: exponential},
-    	"Bhaal":        {id: "15", cost: linear},
-    	"Morgulis":     {id: "16", cost: constant},
-    	"Chronos":      {id: "17", cost: exponential},
-    	"Bubos":        {id: "18", cost: exponential},
-    	"Fragsworth":   {id: "19", cost: linear},
-    	"Vaagur":       {id: "20", cost: exponential},
-    	"Kumawakamaru": {id: "21", cost: exponential},
-    	"Chawedo":      {id: "22", cost: exponential},
-    	"Hecatoncheir": {id: "23", cost: exponential},
-    	"Berserker":    {id: "24", cost: exponential},
-    	"Sniperino":    {id: "25", cost: exponential},
-    	"Kleptos":      {id: "26", cost: exponential},
-    	"Energon":      {id: "27", cost: exponential},
-    	"Argaiv":       {id: "28", cost: linear},
-    	"Juggernaut":   {id: "29", cost: polynomial15},
-    	// Iris "30", quadratic
-    	"Revolc":       {id: "31", cost: exponential}
+      "Dogcog":       {id: "11", cost: maths.exponential.unit},
+      "Fortuna":      {id: "12", cost: maths.exponential.unit},
+      "Atman":        {id: "13", cost: maths.exponential.unit},
+      "Dora":         {id: "14", cost: maths.exponential.unit},
+      "Bhaal":        {id: "15", cost: maths.linear.unit},
+      "Morgulis":     {id: "16", cost: maths.constant.unit},
+      "Chronos":      {id: "17", cost: maths.exponential.unit},
+      "Bubos":        {id: "18", cost: maths.exponential.unit},
+      "Fragsworth":   {id: "19", cost: maths.linear.unit},
+      "Vaagur":       {id: "20", cost: maths.exponential.unit},
+      "Kumawakamaru": {id: "21", cost: maths.exponential.unit},
+      "Chawedo":      {id: "22", cost: maths.exponential.unit},
+      "Hecatoncheir": {id: "23", cost: maths.exponential.unit},
+      "Berserker":    {id: "24", cost: maths.exponential.unit},
+      "Sniperino":    {id: "25", cost: maths.exponential.unit},
+      "Kleptos":      {id: "26", cost: maths.exponential.unit},
+      "Energon":      {id: "27", cost: maths.exponential.unit},
+      "Argaiv":       {id: "28", cost: maths.linear.unit},
+      "Juggernaut":   {id: "29", cost: maths.polynomial1_5.unit},
+      // Iris "30", quadratic
+      "Revolc":       {id: "31", cost: maths.exponential.unit}
     };
 
     const outsiders = {
@@ -89,4 +65,4 @@ angular.module('chRotTranscendApp')
       },
       getAncientCost: name => ancients[name].cost
     };
-  });
+  }]);
