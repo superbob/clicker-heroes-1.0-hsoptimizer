@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Clicker Heroes Rules of Thumb 1.0 HS Optimizer</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="chRotTranscendApp">
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div class="header">
+      <div class="container">
+        <h1>Clicker Heroes Rules of Thumb 1.0 HS Optimizer</h1>
+      </div>
+    </div>
+
+    <div class="container">
+    <div ng-view=""></div>
+    </div>
+
+    <div class="footer">
+      <div class="container">
+        <p>Formulas from xxx, greatly inspired by yyy</p>
+      </div>
+    </div>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/cryptojslib/rollups/aes.js"></script>
+    <script src="bower_components/cryptojslib/rollups/hmac-md5.js"></script>
+    <script src="bower_components/cryptojslib/rollups/hmac-ripemd160.js"></script>
+    <script src="bower_components/cryptojslib/rollups/hmac-sha1.js"></script>
+    <script src="bower_components/cryptojslib/rollups/hmac-sha224.js"></script>
+    <script src="bower_components/cryptojslib/rollups/hmac-sha256.js"></script>
+    <script src="bower_components/cryptojslib/rollups/hmac-sha3.js"></script>
+    <script src="bower_components/cryptojslib/rollups/hmac-sha384.js"></script>
+    <script src="bower_components/cryptojslib/rollups/hmac-sha512.js"></script>
+    <script src="bower_components/cryptojslib/rollups/md5.js"></script>
+    <script src="bower_components/cryptojslib/rollups/pbkdf2.js"></script>
+    <script src="bower_components/cryptojslib/rollups/rabbit-legacy.js"></script>
+    <script src="bower_components/cryptojslib/rollups/rabbit.js"></script>
+    <script src="bower_components/cryptojslib/rollups/rc4.js"></script>
+    <script src="bower_components/cryptojslib/rollups/ripemd160.js"></script>
+    <script src="bower_components/cryptojslib/rollups/sha1.js"></script>
+    <script src="bower_components/cryptojslib/rollups/sha224.js"></script>
+    <script src="bower_components/cryptojslib/rollups/sha256.js"></script>
+    <script src="bower_components/cryptojslib/rollups/sha3.js"></script>
+    <script src="bower_components/cryptojslib/rollups/sha384.js"></script>
+    <script src="bower_components/cryptojslib/rollups/sha512.js"></script>
+    <script src="bower_components/cryptojslib/rollups/tripledes.js"></script>
+    <!-- endbower -->
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/transition.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/collapse.js"></script>
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/services/savedecoder.js"></script>
+        <script src="scripts/services/formulas.js"></script>
+        <script src="scripts/services/mechanics.js"></script>
+        <script src="scripts/services/savedataanalyzer.js"></script>
+        <script src="scripts/services/hsoptimizer.js"></script>
+        <!-- endbuild -->
+
+    <script>
+    $('.collapse').collapse();
+    </script>
+</body>
+</html>
