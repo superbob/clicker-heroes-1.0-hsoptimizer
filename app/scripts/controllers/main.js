@@ -24,6 +24,7 @@ angular.module('chRotTranscendApp')
       if (encodedData) {
         try {
           $scope.saveData = saveDecoder(encodedData);
+          console.log($scope.saveData.ancients.ancients);
         } catch (e) {
           /* jshint -W117 */
           $('#saveData').parent().addClass('has-error');

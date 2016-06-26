@@ -104,12 +104,7 @@ angular.module('chRotTranscendApp')
           const ancientCostMultiplier = Math.pow(0.95, chorgorlothLevel);
 
           return ancientLevels.reduce((totalCost, ancient) => {
-            let ancientCost = 0;
-            // const costFunction = nsum(mechanics.getAncientCost(ancient.name));
-            // return costFunction(ancient.optimizedLevel) - costFunction(ancient.currentLevel);
-            for (let i = ancient.currentLevel + 1; i <= ancient.optimizedLevel; i++) {
-              ancientCost += mechanics.getAncientCost(ancient.name)(i);
-            }
+            let ancientCost = mechanics.getAncientUpgradeCost(ancient.name, ancient.currentLevel, ancient.optimizedLevel);
             return totalCost + ancientCost * ancientCostMultiplier;
           }, 0);
         };

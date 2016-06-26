@@ -53,19 +53,19 @@ describe('Service: maths', function () {
   });
 
   describe('constant.sum', function() {
-    it('should return 1 when given 1', function() {
-      expect(maths.constant.sum(1)).toBe(1);
-      expect(maths.sum(maths.constant.unit)(1)).toBe(1);
+    it('should return 2 when given 1', function() {
+      expect(maths.constant.sum(1)).toBe(2);
+      expect(maths.sum(maths.constant.unit)(1)).toBe(2);
     });
 
-    it('should return 3 when given 3', function() {
-      expect(maths.constant.sum(3)).toBe(3);
-      expect(maths.sum(maths.constant.unit)(3)).toBe(3);
+    it('should return 4 when given 3', function() {
+      expect(maths.constant.sum(3)).toBe(4);
+      expect(maths.sum(maths.constant.unit)(3)).toBe(4);
     });
 
-    it('should return 4 when given 4', function() {
-      expect(maths.constant.sum(4)).toBe(4);
-      expect(maths.sum(maths.constant.unit)(4)).toBe(4);
+    it('should return 5 when given 4', function() {
+      expect(maths.constant.sum(4)).toBe(5);
+      expect(maths.sum(maths.constant.unit)(4)).toBe(5);
     });
   });
 
@@ -83,17 +83,17 @@ describe('Service: maths', function () {
   describe('exponential.sum', function() {
     it('should return 3 when given 1', function() {
       expect(maths.exponential.sum(1)).toBe(3);
-      expect(maths.sum(maths.exponential.unit)(1)).toBe(2);
+      expect(maths.sum(maths.exponential.unit)(1)).toBe(3);
     });
 
     it('should return 15 when given 3', function() {
       expect(maths.exponential.sum(3)).toBe(15);
-      expect(maths.sum(maths.exponential.unit)(3)).toBe(14);
+      expect(maths.sum(maths.exponential.unit)(3)).toBe(15);
     });
 
     it('should return 31 when given 4', function() {
       expect(maths.exponential.sum(4)).toBe(31);
-      expect(maths.sum(maths.exponential.unit)(4)).toBe(30);
+      expect(maths.sum(maths.exponential.unit)(4)).toBe(31);
     });
   });
 
@@ -127,7 +127,7 @@ describe('Service: maths', function () {
 
   describe('sum', function() {
     it('should return 30 when given exponential and 4', function() {
-      expect(maths.sum(maths.exponential.unit)(4)).toBe(30);
+      expect(maths.sum(maths.exponential.unit)(4)).toBe(31);
     });
   });
 

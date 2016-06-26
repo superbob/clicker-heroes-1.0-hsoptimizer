@@ -11,7 +11,7 @@ angular.module('chRotTranscendApp')
   .service('saveDataAnalyzer', ['mechanics', function (mechanics) {
     var getAncients = saveData => Object.keys(saveData.ancients.ancients).map(id => ({
       name: mechanics.getAncientNameById(id),
-      level: Math.round(saveData.ancients.ancients[id].level)}));
+      level: Math.floor(saveData.ancients.ancients[id].level)}));
 
     return {
       getAncients: getAncients,
