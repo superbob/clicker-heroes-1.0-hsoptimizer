@@ -1,33 +1,31 @@
-'use strict';
+export class MainController {
+  constructor ($scope, $log, saveDecoder, formulas, saveDataAnalyzer, hsoptimizer) {
+    'ngInject';
 
-/**
- * @ngdoc function
- * @name chRotTranscendApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the chRotTranscendApp
- */
-angular.module('chRotTranscendApp')
-  .controller('MainCtrl', ['$scope', 'saveDecoder', 'formulas', 'saveDataAnalyzer', 'hsoptimizer', function ($scope, saveDecoder, formulas, saveDataAnalyzer, hsoptimizer) {
-    $scope.hsInStock = 0;
-    $scope.ascendZone = 0;
+    const resetForm = () => {
+      $scope.saveData = null;
+      $scope.hsInStock = 0;
+      $scope.ascendZone = 0;
+      $scope.ancients = [];
+      $scope.playStyle = "idle";
+      $scope.includeSoulsFromAscend = false;
+    };
 
-    $scope.ancients = [];
-
-    $scope.playStyle = "idle";
+    resetForm();
 
     $scope.$watch('encodedSaveData', function(encodedData) {
       /* jshint -W117 */
-      $('#saveData').parent().removeClass('has-error');
+      angular.element('#saveData').parent().removeClass('has-error');
       /* jshint +W117 */
+      resetForm();
       // TODO add validation of savedata
       if (encodedData) {
         try {
-          $scope.saveData = saveDecoder(encodedData);
-          console.log($scope.saveData.ancients.ancients);
+          $scope.saveData = saveDecoder.decryptSave(encodedData);
         } catch (e) {
+          $log.debug(e);
           /* jshint -W117 */
-          $('#saveData').parent().addClass('has-error');
+          angular.element('#saveData').parent().addClass('has-error');
           /* jshint +W117 */
         }
       }
@@ -38,21 +36,28 @@ angular.module('chRotTranscendApp')
         $scope.hsInStock = saveDataAnalyzer.getHsInStock(saveData);
         $scope.ascendZone = saveDataAnalyzer.getAscendZone(saveData);
         $scope.playStyle = saveDataAnalyzer.detectPlayStyle(saveData);
+        $scope.hsFromAscend = saveDataAnalyzer.getHsUponAscend(saveData);
       }
     });
 
     // see http://stackoverflow.com/questions/21088845/can-i-debounce-or-throttle-a-watched-input-in-angularjs-using-lodash
     // TODO debounce (lodash)
-    $scope.$watchGroup(['saveData', 'ascendZone', 'playStyle'], function([saveData, ascendZone, playStyle]) {
+    $scope.$watchGroup(['saveData', 'ascendZone', 'playStyle', 'includeSoulsFromAscend'], function([saveData, ascendZone, playStyle, includeSoulsFromAscend]) {
       if (saveData) {
-        console.log("Computing...");
+        $log.debug("Computing...");
+        let hs = $scope.hsInStock;
+        if (includeSoulsFromAscend) {
+          hs += $scope.hsFromAscend;
+        }
         $scope.ancients = hsoptimizer.computeOptimumLevels(
           saveDataAnalyzer.getAncients(saveData),
           saveDataAnalyzer.getOutsiders(saveData),
-          $scope.hsInStock,
+          hs,
           ascendZone,
           saveDataAnalyzer.getAncientSoulsTotal(saveData),
           playStyle);
+        $log.debug("Computing done");
       }
     });
-  }]);
+  }
+}

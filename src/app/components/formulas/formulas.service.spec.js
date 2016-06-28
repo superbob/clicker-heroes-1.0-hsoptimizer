@@ -1,7 +1,4 @@
-'use strict';
-
-describe('Service: formulas', function () {
-
+describe('service formulas', () => {
   const customMatchers = {
     toBeApproximatly: function() {
       return {
@@ -24,113 +21,109 @@ describe('Service: formulas', function () {
     jasmine.addMatchers(customMatchers);
   });
 
-  // load the service's module
-  beforeEach(angular.mock.module('chRotTranscendApp'));
+  beforeEach(angular.mock.module('clickerHeroes10Hsoptimizer'));
 
-  // instantiate service
-  var formulas;
-  beforeEach(inject(function (_formulas_) {
-    formulas = _formulas_;
+  it('should be registered', inject(formulas => {
+    expect(formulas).not.toEqual(null);
   }));
-
-  it('should do something', function () {
-    expect(!!formulas).toBe(true);
-  });
 
   const BASE_LEVEL = 100;
   const OLD_LEVEL = 1;
   const ALPHA = 0.8;
 
-  describe('computeMorgulisLevel formula', function() {
-    it('should return the square of baselevel when given a baseLevel', function() {
+  describe('computeMorgulisLevel formula', () => {
+    it('should exist', inject(formulas => {
+      expect(formulas.computeMorgulisLevel).not.toBeNull();
+    }));
+
+    it('should return the square of baselevel when given a baseLevel', inject(formulas => {
       expect(formulas.computeMorgulisLevel(10)).toBe(100);
       expect(formulas.computeMorgulisLevel(2)).toBe(4);
       expect(formulas.computeMorgulisLevel(1000)).toBe(1000000);
-    });
+    }));
   });
 
-  describe('computeBubosLevel formula', function() {
-    it('should return 6 when given (100, 1)', function() {
+  describe('computeBubosLevel formula', () => {
+    it('should return 6 when given (100, 1)', inject(formulas => {
       expect(Math.round(formulas.computeBubosLevel(BASE_LEVEL, OLD_LEVEL))).toBe(6);
-    });
+    }));
   });
 
-  describe('computeChronosLevel formula', function() {
-    it('should return 8 when given (100, 1)', function() {
+  describe('computeChronosLevel formula', () => {
+    it('should return 8 when given (100, 1)', inject(formulas => {
       expect(Math.round(formulas.computeChronosLevel(BASE_LEVEL, OLD_LEVEL))).toBe(8);
-    });
+    }));
   });
 
-  describe('computeGoldLevel formula', function() {
-    it('should return 93 when given 100', function() {
+  describe('computeGoldLevel formula', () => {
+    it('should return 93 when given 100', inject(formulas => {
       expect(Math.round(formulas.computeGoldLevel(BASE_LEVEL))).toBe(93);
-    });
+    }));
   });
 
-  describe('computeDoraLevel formula', function() {
-    it('should return 10 when given (100, 1)', function() {
+  describe('computeDoraLevel formula', () => {
+    it('should return 10 when given (100, 1)', inject(formulas => {
       expect(Math.round(formulas.computeDoraLevel(BASE_LEVEL, OLD_LEVEL))).toBe(10);
-    });
+    }));
   });
 
-  describe('computeDogcogLevel formula', function() {
-    it('should return 6 when given (100, 1)', function() {
+  describe('computeDogcogLevel formula', () => {
+    it('should return 6 when given (100, 1)', inject(formulas => {
       expect(Math.round(formulas.computeDogcogLevel(BASE_LEVEL, OLD_LEVEL))).toBe(6);
-    });
+    }));
   });
 
-  describe('computeFortunaLevel formula', function() {
-    it('should return 7 when given (100, 1)', function() {
+  describe('computeFortunaLevel formula', () => {
+    it('should return 7 when given (100, 1)', inject(formulas => {
       expect(Math.round(formulas.computeFortunaLevel(BASE_LEVEL, OLD_LEVEL))).toBe(7);
-    });
+    }));
   });
 
-  describe('computeSolomonLevel formula', function() {
-    it('should return 44 when given (100, 0.8)', function() {
+  describe('computeSolomonLevel formula', () => {
+    it('should return 44 when given (100, 0.8)', inject(formulas => {
       expect(Math.round(formulas.computeSolomonLevel(BASE_LEVEL, ALPHA))).toBe(44);
-    });
+    }));
   });
 
-  describe('computeAtmanLevel formula', function() {
-    it('should return 8 when given (100, 1, 0.8)', function() {
+  describe('computeAtmanLevel formula', () => {
+    it('should return 8 when given (100, 1, 0.8)', inject(formulas => {
       expect(Math.round(formulas.computeAtmanLevel(BASE_LEVEL, OLD_LEVEL, ALPHA))).toBe(8);
-    });
+    }));
   });
 
-  describe('computeKumawakamaruLevel formula', function() {
-    it('should return 3 when given (100, 1, 0.8)', function() {
+  describe('computeKumawakamaruLevel formula', () => {
+    it('should return 3 when given (100, 1, 0.8)', inject(formulas => {
       expect(Math.round(formulas.computeKumawakamaruLevel(BASE_LEVEL, OLD_LEVEL, ALPHA))).toBe(3);
-    });
+    }));
   });
 
-  describe('computeHybridBhaalLevel formula', function() {
-    it('should return 50 when given 100', function() {
+  describe('computeHybridBhaalLevel formula', () => {
+    it('should return 50 when given 100', inject(formulas => {
       expect(Math.round(formulas.computeHybridBhaalLevel(BASE_LEVEL))).toBe(50);
-    });
+    }));
   });
 
-  describe('computeHybridJuggernautLevel formula', function() {
-    it('should return 23 when given 100', function() {
+  describe('computeHybridJuggernautLevel formula', () => {
+    it('should return 23 when given 100', inject(formulas => {
       expect(Math.round(formulas.computeHybridJuggernautLevel(BASE_LEVEL))).toBe(23);
-    });
+    }));
   });
 
-  describe('computeActiveJuggernautLevel formula', function() {
-    it('should return 40 when given 100', function() {
+  describe('computeActiveJuggernautLevel formula', () => {
+    it('should return 40 when given 100', inject(formulas => {
       expect(Math.round(formulas.computeActiveJuggernautLevel(BASE_LEVEL))).toBe(40);
-    });
+    }));
   });
 
-  describe('computeAlpha formula', function() {
-    it('should return 40 when given (1.5, 1500)', function() {
+  describe('computeAlpha formula', () => {
+    it('should return 40 when given (1.5, 1500)', inject(formulas => {
       expect(formulas.computeAlpha(0.015, 1500)).toBeApproximatly(0.145341);
-    });
+    }));
   });
 
-  describe('computeTranscendencePower formula', function() {
-    it('should return 40 when given (1.5, 1500)', function() {
+  describe('computeTranscendencePower formula', () => {
+    it('should return 40 when given (1.5, 1500)', inject(formulas => {
       expect(formulas.computeTranscendencePower(30, 10)).toBeApproximatly(0.016467);
-    });
+    }));
   });
-
 });

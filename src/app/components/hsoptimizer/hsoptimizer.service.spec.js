@@ -1,18 +1,10 @@
 'use strict';
 
-describe('Service: hsoptimizer', function () {
+describe('service hsoptimizer', () => {
+  beforeEach(angular.mock.module('clickerHeroes10Hsoptimizer'));
 
-  // load the service's module
-  beforeEach(angular.mock.module('chRotTranscendApp'));
-
-  // instantiate service
-  var hsoptimizer;
-  beforeEach(inject(function (_hsoptimizer_) {
-    hsoptimizer = _hsoptimizer_;
+  it('should be registered', inject(hsoptimizer => {
+    expect(hsoptimizer).not.toEqual(null);
   }));
-
-  it('should do something', function () {
-    expect(!!hsoptimizer).toBe(true);
-  });
 
 });

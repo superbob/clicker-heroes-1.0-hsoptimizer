@@ -1,23 +1,33 @@
-'use strict';
+describe('controllers', () => {
+  // let vm;
 
-describe('Controller: MainCtrl', function () {
+  beforeEach(angular.mock.module('clickerHeroes10Hsoptimizer'));
 
-  // load the controller's module
-  beforeEach(angular.mock.module('chRotTranscendApp'));
-
-  var MainCtrl,
-    scope;
-
-  // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
-      $scope: scope
-      // place here mocked dependencies
-    });
-  }));
-
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.hsInStock).toBe(0);
-  });
+  // TODO it should be fixed
+  // beforeEach(inject(($controller, webDevTec, toastr) => {
+  //   spyOn(webDevTec, 'getTec').and.returnValue([{}, {}, {}, {}, {}]);
+  //   spyOn(toastr, 'info').and.callThrough();
+  //
+  //   vm = $controller('MainController');
+  // }));
+  //
+  // it('should have a timestamp creation date', () => {
+  //   expect(vm.creationDate).toEqual(jasmine.any(Number));
+  // });
+  //
+  // it('should define animate class after delaying timeout', inject($timeout => {
+  //   $timeout.flush();
+  //   expect(vm.classAnimation).toEqual('rubberBand');
+  // }));
+  //
+  // it('should show a Toastr info and stop animation when invoke showToastr()', inject(toastr => {
+  //   vm.showToastr();
+  //   expect(toastr.info).toHaveBeenCalled();
+  //   expect(vm.classAnimation).toEqual('');
+  // }));
+  //
+  // it('should define more than 5 awesome things', () => {
+  //   expect(angular.isArray(vm.awesomeThings)).toBeTruthy();
+  //   expect(vm.awesomeThings.length === 5).toBeTruthy();
+  // });
 });

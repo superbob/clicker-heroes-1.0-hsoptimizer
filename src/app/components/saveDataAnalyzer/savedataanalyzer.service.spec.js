@@ -1,18 +1,10 @@
 'use strict';
 
-describe('Service: saveDataAnalyzer', function () {
+describe('service saveDataAnalyzer', () => {
+  beforeEach(angular.mock.module('clickerHeroes10Hsoptimizer'));
 
-  // load the service's module
-  beforeEach(angular.mock.module('chRotTranscendApp'));
-
-  // instantiate service
-  var saveDataAnalyzer;
-  beforeEach(inject(function (_saveDataAnalyzer_) {
-    saveDataAnalyzer = _saveDataAnalyzer_;
+  it('should be registered', inject(saveDataAnalyzer => {
+    expect(saveDataAnalyzer).not.toEqual(null);
   }));
-
-  it('should do something', function () {
-    expect(!!saveDataAnalyzer).toBe(true);
-  });
 
 });

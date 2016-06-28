@@ -1,18 +1,10 @@
 'use strict';
 
-describe('Service: saveDecoder', function () {
+describe('service saveDecoder', () => {
+  beforeEach(angular.mock.module('clickerHeroes10Hsoptimizer'));
 
-  // load the service's module
-  beforeEach(angular.mock.module('chRotTranscendApp'));
-
-  // instantiate service
-  var saveDecoder;
-  beforeEach(inject(function (_saveDecoder_) {
-    saveDecoder = _saveDecoder_;
+  it('should be registered', inject(saveDecoder => {
+    expect(saveDecoder).not.toEqual(null);
   }));
-
-  it('should do something', function () {
-    expect(!!saveDecoder).toBe(true);
-  });
 
 });

@@ -1,30 +1,25 @@
-'use strict';
+/* global moment:false */
 
-/**
- * @ngdoc overview
- * @name chRotTranscendApp
- * @description
- * # chRotTranscendApp
- *
- * Main module of the application.
- */
-angular
-  .module('chRotTranscendApp', [
-    'ngAnimate',
-    'ngCookies',
-    'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'ngTouch'
-  ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+import { config } from './index.config';
+import { routerConfig } from './index.route';
+import { runBlock } from './index.run';
+import { MainController } from './main/main.controller';
+import formulas from '../app/components/formulas/formulas.service';
+import hsoptimizer from '../app/components/hsoptimizer/hsoptimizer.service';
+import maths from '../app/components/maths/maths.service';
+import mechanics from '../app/components/mechanics/mechanics.service';
+import saveDataAnalyzer from '../app/components/saveDataAnalyzer/savedataanalyzer.service';
+import saveDecoder from '../app/components/saveDecoder/savedecoder.service';
+
+angular.module('clickerHeroes10Hsoptimizer', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ngRoute', 'ui.bootstrap', 'toastr'])
+  .constant('moment', moment)
+  .config(config)
+  .config(routerConfig)
+  .run(runBlock)
+  .service('maths', maths)
+  .service('formulas', formulas)
+  .service('mechanics', mechanics)
+  .service('hsoptimizer', hsoptimizer)
+  .service('saveDataAnalyzer', saveDataAnalyzer)
+  .service('saveDecoder', saveDecoder)
+  .controller('MainController', MainController)

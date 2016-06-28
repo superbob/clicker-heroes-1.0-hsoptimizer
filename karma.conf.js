@@ -1,116 +1,103 @@
-// Karma configuration
-// Generated on 2016-06-15
+'use strict';
+
+var path = require('path');
+var conf = require('./gulp/conf');
+
+var _ = require('lodash');
+var wiredep = require('wiredep');
+
+var pathSrcHtml = [
+  path.join(conf.paths.src, '/**/*.html')
+];
+
+function listFiles() {
+  var wiredepOptions = _.extend({}, conf.wiredep, {
+    dependencies: true,
+    devDependencies: true
+  });
+
+  var patterns = wiredep(wiredepOptions).js
+    .concat([
+      path.join(conf.paths.tmp, '/serve/app/index.module.js'),
+    ])
+    .concat(pathSrcHtml);
+
+  var files = patterns.map(function(pattern) {
+    return {
+      pattern: pattern
+    };
+  });
+  files.push({
+    pattern: path.join(conf.paths.src, '/assets/**/*'),
+    included: false,
+    served: true,
+    watched: false
+  });
+  return files;
+}
 
 module.exports = function(config) {
-  'use strict';
 
-  config.set({
-    // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
+  var configuration = {
+    files: listFiles(),
 
-    // base path, that will be used to resolve files and exclude
-    basePath: '../',
+    singleRun: true,
 
-    // testing framework to use (jasmine/mocha/qunit/...)
-    // as well as any additional frameworks (requirejs/chai/sinon/...)
-    frameworks: [
-      'browserify',
-      'jasmine'
-    ],
+    autoWatch: false,
 
-    // list of files / patterns to load in the browser
-    files: [
-      // bower:js
-      'bower_components/angular/angular.js',
-      'bower_components/jquery/dist/jquery.js',
-      'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js',
-      'bower_components/angular-animate/angular-animate.js',
-      'bower_components/angular-cookies/angular-cookies.js',
-      'bower_components/angular-resource/angular-resource.js',
-      'bower_components/angular-route/angular-route.js',
-      'bower_components/angular-sanitize/angular-sanitize.js',
-      'bower_components/angular-touch/angular-touch.js',
-      'bower_components/cryptojslib/rollups/aes.js',
-      'bower_components/cryptojslib/rollups/hmac-md5.js',
-      'bower_components/cryptojslib/rollups/hmac-ripemd160.js',
-      'bower_components/cryptojslib/rollups/hmac-sha1.js',
-      'bower_components/cryptojslib/rollups/hmac-sha224.js',
-      'bower_components/cryptojslib/rollups/hmac-sha256.js',
-      'bower_components/cryptojslib/rollups/hmac-sha3.js',
-      'bower_components/cryptojslib/rollups/hmac-sha384.js',
-      'bower_components/cryptojslib/rollups/hmac-sha512.js',
-      'bower_components/cryptojslib/rollups/md5.js',
-      'bower_components/cryptojslib/rollups/pbkdf2.js',
-      'bower_components/cryptojslib/rollups/rabbit-legacy.js',
-      'bower_components/cryptojslib/rollups/rabbit.js',
-      'bower_components/cryptojslib/rollups/rc4.js',
-      'bower_components/cryptojslib/rollups/ripemd160.js',
-      'bower_components/cryptojslib/rollups/sha1.js',
-      'bower_components/cryptojslib/rollups/sha224.js',
-      'bower_components/cryptojslib/rollups/sha256.js',
-      'bower_components/cryptojslib/rollups/sha3.js',
-      'bower_components/cryptojslib/rollups/sha384.js',
-      'bower_components/cryptojslib/rollups/sha512.js',
-      'bower_components/cryptojslib/rollups/tripledes.js',
-      'bower_components/angular-mocks/angular-mocks.js',
-      // endbower
-      'app/scripts/**/*.js',
-      'test/mock/**/*.js',
-      'test/spec/**/*.js'
-    ],
-
-    // list of files / patterns to exclude
-    exclude: [
-    ],
-
-    preprocessors: {
-      'app/scripts/**/*.js': ['browserify'],
-      'test/**/*.js': ['browserify']
+    ngHtml2JsPreprocessor: {
+      stripPrefix: conf.paths.src + '/',
+      moduleName: 'clickerHeroes10Hsoptimizer'
     },
 
-    browserify: {
-      debug: true,
-      // transform: ['babelify']
-      transform: [['babelify', {"presets": ["es2015"]}]]
-    },
+    logLevel: 'WARN',
 
-    // web server port
-    port: 8080,
+    frameworks: ['phantomjs-shim', 'jasmine'],
 
-    // Start these browsers, currently available:
-    // - Chrome
-    // - ChromeCanary
-    // - Firefox
-    // - Opera
-    // - Safari (only Mac)
-    // - PhantomJS
-    // - IE (only Windows)
-    browsers: [
-      'PhantomJS'
-    ],
+    browsers : ['PhantomJS'],
 
-    // Which plugins to enable
-    plugins: [
+    plugins : [
       'karma-phantomjs-launcher',
-      'karma-browserify',
-      'karma-jasmine'
+      'karma-phantomjs-shim',
+      'karma-coverage',
+      'karma-jasmine',
+      'karma-ng-html2js-preprocessor'
     ],
 
-    // Continuous Integration mode
-    // if true, it capture browsers, run tests and exit
-    singleRun: false,
+    coverageReporter: {
+      type : 'html',
+      dir : 'coverage/'
+    },
 
-    colors: true,
+    reporters: ['progress'],
 
-    // level of logging
-    // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-    logLevel: config.LOG_INFO,
+    proxies: {
+      '/assets/': path.join('/base/', conf.paths.src, '/assets/')
+    }
+  };
 
-    // Uncomment the following lines if you are using grunt's server to run the tests
-    // proxies: {
-    //   '/': 'http://localhost:9000/'
-    // },
-    // URL root prevent conflicts with the site root
-    // urlRoot: '_karma_'
+  // This is the default preprocessors configuration for a usage with Karma cli
+  // The coverage preprocessor is added in gulp/unit-test.js only for single tests
+  // It was not possible to do it there because karma doesn't let us now if we are
+  // running a single test or not
+  configuration.preprocessors = {};
+  pathSrcHtml.forEach(function(path) {
+    configuration.preprocessors[path] = ['ng-html2js'];
   });
+
+  // This block is needed to execute Chrome on Travis
+  // If you ever plan to use Chrome and Travis, you can keep it
+  // If not, you can safely remove it
+  // https://github.com/karma-runner/karma/issues/1144#issuecomment-53633076
+  if(configuration.browsers[0] === 'Chrome' && process.env.TRAVIS) {
+    configuration.customLaunchers = {
+      'chrome-travis-ci': {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    };
+    configuration.browsers = ['chrome-travis-ci'];
+  }
+
+  config.set(configuration);
 };
