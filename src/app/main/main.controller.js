@@ -1,3 +1,5 @@
+'use strict';
+
 export class MainController {
   constructor ($scope, $log, saveDecoder, formulas, saveDataAnalyzer, hsoptimizer) {
     'ngInject';

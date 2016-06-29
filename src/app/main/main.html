@@ -57,7 +57,7 @@
             <div class="form-group">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" ng-model="includeSoulsFromAscend">Include souls from ascension<span ng-if="saveData"> (+{{hsFromAscend}})</span>
+                  <input type="checkbox" ng-model="includeSoulsFromAscend">Include souls from ascension<span ng-if="saveData"> (+{{hsFromAscend | exponential}})</span>
                 </label>
               </div>
             </div>
@@ -68,7 +68,7 @@
   </div>
 
   <div class="row" ng-if="saveData">
-      <p>You have {{hsInStock}} HS in stock</p>
+      <p>You have {{hsInStock | exponential}} HS in stock</p>
   </div>
 
   <div class="row" ng-if="saveData">
@@ -84,9 +84,9 @@
         <tbody>
           <tr ng-repeat="ancient in ancients | orderBy : 'name'">
             <td>{{ancient.name}}</td>
-            <td>{{ancient.level}}</td>
-            <td>{{ancient.optimumLevel}}</td>
-            <td><strong>+{{ancient.optimumLevel - ancient.level}}</strong></td>
+            <td>{{ancient.level | exponential}}</td>
+            <td>{{ancient.optimumLevel | exponential}}</td>
+            <td><strong>+{{ancient.optimumLevel - ancient.level | exponential}}</strong></td>
           </tr>
         </tbody>
       </table>

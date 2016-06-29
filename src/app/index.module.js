@@ -1,3 +1,5 @@
+'use strict';
+
 /* global moment:false */
 
 import { config } from './index.config';
@@ -10,16 +12,18 @@ import maths from '../app/components/maths/maths.service';
 import mechanics from '../app/components/mechanics/mechanics.service';
 import saveDataAnalyzer from '../app/components/saveDataAnalyzer/savedataanalyzer.service';
 import saveDecoder from '../app/components/saveDecoder/savedecoder.service';
+import exponential from '../app/components/exponential/exponential.filter';
 
 angular.module('clickerHeroes10Hsoptimizer', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ngRoute', 'ui.bootstrap', 'toastr'])
   .constant('moment', moment)
   .config(config)
   .config(routerConfig)
   .run(runBlock)
-  .service('maths', maths)
+  .value('maths', maths)
   .service('formulas', formulas)
   .service('mechanics', mechanics)
   .service('hsoptimizer', hsoptimizer)
   .service('saveDataAnalyzer', saveDataAnalyzer)
   .service('saveDecoder', saveDecoder)
+  .filter('exponential', exponential)
   .controller('MainController', MainController)

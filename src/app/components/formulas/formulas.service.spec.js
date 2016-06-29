@@ -1,3 +1,5 @@
+'use strict';
+
 describe('service formulas', () => {
   const customMatchers = {
     toBeApproximatly: function() {

@@ -1,3 +1,5 @@
+'use strict';
+
 describe('service mechanics', () => {
   beforeEach(angular.mock.module('clickerHeroes10Hsoptimizer'));
 

@@ -1,3 +1,5 @@
+'use strict';
+
 export function routerConfig ($routeProvider) {
   'ngInject';
   $routeProvider
