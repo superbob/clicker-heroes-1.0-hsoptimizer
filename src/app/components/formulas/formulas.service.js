@@ -46,6 +46,9 @@ export default class Formulas {
   }
 
   // Formulas taken from https://kepow.org/clickerheroes
+  // and https://www.reddit.com/r/ClickerHeroes/comments/3y57jd/updated_rules_of_thumb/
+  // changed ratio from 0.1 to 0.5 in respect to original Rules of Thumb
+  // for a more active power !
   computeHybridBhaalLevel(baseLevel) {
     return 0.5 * baseLevel;
   }
@@ -60,7 +63,8 @@ export default class Formulas {
 
   // Alpha formula from: http://alexbonjour.github.io/rules-of-thumb/
   computeAlpha(tp, ascensionZone) {
-    return 1.4067 * Math.log(1 + tp) / Math.log((Math.ceil(ascensionZone / 500) * 0.005) + 1.14);
+    const hpScale = (Math.ceil(ascensionZone / 500) * 0.005) + 1.14;
+    return 1.4067 * Math.log(1 + tp) / Math.log(hpScale);
   }
 
   // TP formula from: https://www.reddit.com/r/ClickerHeroes/wiki/faqtranscendence
