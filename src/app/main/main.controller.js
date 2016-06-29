@@ -11,6 +11,7 @@ export class MainController {
       $scope.ancients = [];
       $scope.playStyle = "idle";
       $scope.includeSoulsFromAscend = false;
+      $scope.saveDataError = false;
     };
 
     resetForm();
@@ -26,6 +27,7 @@ export class MainController {
           $scope.saveData = saveDecoder.decryptSave(encodedData);
         } catch (e) {
           $log.debug(e);
+          $scope.saveDataError = true;
           /* jshint -W117 */
           angular.element('#saveData').parent().addClass('has-error');
           /* jshint +W117 */

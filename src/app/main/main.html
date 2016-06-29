@@ -25,6 +25,7 @@
               <label for="saveData">Save data</label>
               <textarea class="form-control" id="saveData" rows="3" placeholder="Paste your save data here" ng-model="encodedSaveData"></textarea>
             </div>
+            <p class="text-danger" ng-show="saveDataError">Invalid save data</p>
           </form>
         </div>
         <div class="col-md-6">

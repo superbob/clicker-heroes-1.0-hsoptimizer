@@ -66,6 +66,8 @@ export default class HSOptimizer {
       baseLevel = ancientList.filter(ancient => ancient.name === 'Siyalatas')[0].level;
     }
 
+    // const hasMorgulis = ancientList.some(ancient => ancient.name === 'Morgulis');
+
     const tp = this.formulas.computeTranscendencePower(ancientSoulsTotal, phandoryssLevel);
     const alpha = this.formulas.computeAlpha(tp, ascendZone);
 
@@ -110,7 +112,11 @@ export default class HSOptimizer {
     while (remainingHs >= 0) {
       baseLevelIncrease++;
       const newLevels = computeNewLevels(ancientList, baseLevel + baseLevelIncrease, alpha);
-      remainingHs = hsInStock - getCost(newLevels, chorgorlothLevel);
+      let bank = 0;
+      // if (!hasMorgulis) {
+      //   bank = this.mechanics.getAncientUpgradeCost("Morgulis", 1, baseLevelIncrease);
+      // }
+      remainingHs = hsInStock - getCost(newLevels, chorgorlothLevel) - bank;
     }
 
     const newBaseLevel = baseLevel + baseLevelIncrease - 1;
