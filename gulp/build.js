@@ -13,12 +13,7 @@ gulp.task('partials', function () {
     path.join(conf.paths.src, '/app/**/*.html'),
     path.join(conf.paths.tmp, '/serve/app/**/*.html')
   ])
-    .pipe($.htmlmin({
-      removeEmptyAttributes: true,
-      removeAttributeQuotes: true,
-      collapseBooleanAttributes: true,
-      collapseWhitespace: true
-    }))
+    .pipe($.htmlmin(conf.htmlmin))
     .pipe($.angularTemplatecache('templateCacheHtml.js', {
       module: 'clickerHeroes10Hsoptimizer',
       root: 'app'
@@ -56,12 +51,7 @@ gulp.task('html', ['inject', 'partials'], function () {
     .pipe(cssFilter.restore)
     .pipe($.revReplace())
     .pipe(htmlFilter)
-    .pipe($.htmlmin({
-      removeEmptyAttributes: true,
-      removeAttributeQuotes: true,
-      collapseBooleanAttributes: true,
-      collapseWhitespace: true
-    }))
+    .pipe($.htmlmin(conf.htmlmin))
     .pipe(htmlFilter.restore)
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')))
     .pipe($.size({ title: path.join(conf.paths.dist, '/'), showFiles: true }));

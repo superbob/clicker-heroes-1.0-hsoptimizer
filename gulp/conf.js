@@ -40,3 +40,16 @@ exports.errorHandler = function(title) {
     this.emit('end');
   };
 };
+
+/**
+ *  htmlmin require some specicif options
+ */
+exports.htmlmin = {
+  removeEmptyAttributes: true,
+  removeAttributeQuotes: true,
+  collapseBooleanAttributes: true,
+  collapseWhitespace: true,
+  // https://github.com/superbob/clicker-heroes-1.0-hsoptimizer/issues/2
+  // https://github.com/twbs/bootstrap/issues/14401#issuecomment-52341142
+  conservativeCollapse: true
+};
