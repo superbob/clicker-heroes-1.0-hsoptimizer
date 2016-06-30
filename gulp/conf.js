@@ -42,7 +42,7 @@ exports.errorHandler = function(title) {
 };
 
 /**
- *  htmlmin require some specicif options
+ *  htmlmin require some specific options
  */
 exports.htmlmin = {
   removeEmptyAttributes: true,
