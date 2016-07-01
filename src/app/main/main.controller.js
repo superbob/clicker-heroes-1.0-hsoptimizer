@@ -12,27 +12,34 @@ export class MainController {
       $scope.ascendZone = 0;
       $scope.ancients = [];
       $scope.playStyle = "idle";
+      $scope.hsFromAscend = 0;
       $scope.includeSoulsFromAscend = false;
-      $scope.saveDataError = false;
+      $scope.error = undefined;
+
+      angular.element('#saveData').parent().removeClass('has-error');
     };
 
     resetForm();
 
     $scope.$watch('encodedSaveData', function(encodedData) {
-      /* jshint -W117 */
-      angular.element('#saveData').parent().removeClass('has-error');
-      /* jshint +W117 */
       resetForm();
-      // TODO add validation of savedata
+
       if (encodedData) {
         try {
-          $scope.saveData = saveDecoder.decryptSave(encodedData);
+          const saveData = saveDecoder.decryptSave(encodedData);
+          if (!saveDataAnalyzer.hasTranscended(saveData)) {
+            $scope.error = "Sorry, you need to have transcended at least once to use this calculator";
+            angular.element('#saveData').parent().addClass('has-error');
+          } else if (!saveDataAnalyzer.detectPlayStyle(saveData)) {
+            $scope.error = "Sorry, you need to have at least Siyalatas or Fragsworth to use this calculator";
+            angular.element('#saveData').parent().addClass('has-error');
+          } else {
+            $scope.saveData = saveData;
+          }
         } catch (e) {
           $log.debug(e);
-          $scope.saveDataError = true;
-          /* jshint -W117 */
+          $scope.error = "Save data is invalid";
           angular.element('#saveData').parent().addClass('has-error');
-          /* jshint +W117 */
         }
       }
     });
@@ -50,7 +57,6 @@ export class MainController {
     // TODO debounce (lodash)
     $scope.$watchGroup(['saveData', 'ascendZone', 'playStyle', 'includeSoulsFromAscend'], function([saveData, ascendZone, playStyle, includeSoulsFromAscend]) {
       if (saveData) {
-        $log.debug("Computing...");
         let hs = $scope.hsInStock;
         if (includeSoulsFromAscend) {
           hs += $scope.hsFromAscend;
@@ -62,7 +68,6 @@ export class MainController {
           ascendZone,
           saveDataAnalyzer.getAncientSoulsTotal(saveData),
           playStyle);
-        $log.debug("Computing done");
       }
     });
   }

@@ -44,4 +44,8 @@ export default class SaveDataAnalyzer {
         .reduce(playStyleReducer, undefined);
   }
 
+  hasTranscended(saveData) {
+    return !!saveData.transcendent;
+  }
+
 }

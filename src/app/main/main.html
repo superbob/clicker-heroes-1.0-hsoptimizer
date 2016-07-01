@@ -13,6 +13,7 @@
       by <a href="https://www.reddit.com/user/TinDragon">/u/TinDragon</a> to compute the idle, active and hybrid builds.</p>
     <p>You need at least Siyalatas or Fragsworth at level 1 and to have transcended at least once to make it work.</p>
     <p>Source code is <a href="https://www.github.com/superbob/clicker-heroes-1.0-hsoptimizer">here</a>, it is open to issues and pull requests.</p>
+    <p>Announcement and discussions on <a href="https://www.reddit.com/r/ClickerHeroes/comments/4qhud9/transcendence_hs_optimizer">/r/ClickerHeroes/comments/4qhud9/transcendence_hs_optimizer</a>
   </div>
 
   <div class="row">
@@ -25,7 +26,7 @@
               <label for="saveData">Save data</label>
               <textarea class="form-control" id="saveData" rows="3" placeholder="Paste your save data here" ng-model="encodedSaveData" autofocus></textarea>
             </div>
-            <p class="text-danger" ng-show="saveDataError">Invalid save data</p>
+            <p class="text-danger" ng-show="error">{{error}}</p>
           </form>
         </div>
         <div class="col-md-6">

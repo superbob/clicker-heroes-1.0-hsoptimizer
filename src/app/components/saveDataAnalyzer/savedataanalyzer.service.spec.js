@@ -5,6 +5,7 @@
 const saveData = {
   "highestFinishedZonePersist": 1559,
   "heroSouls": "1.0899840000000034e6",
+  "transcendent": true,
   "ancientSoulsTotal": 42,
   "ancients": {
     "ancients": {
@@ -125,6 +126,20 @@ describe('service saveDataAnalyzer', () => {
   describe('detectPlayStyle', () => {
     it('should return hybrid when given saveData', inject(saveDataAnalyzer => {
       expect(saveDataAnalyzer.detectPlayStyle(saveData)).toBe('hybrid');
+    }));
+  });
+
+  describe('hasTranscended', () => {
+    it('should return true when given transcended saveData', inject(saveDataAnalyzer => {
+      expect(saveDataAnalyzer.hasTranscended(saveData)).toBe(true);
+    }));
+
+    it('should return false when given not transcended saveData', inject(saveDataAnalyzer => {
+      expect(saveDataAnalyzer.hasTranscended({transcendent: false})).toBe(false);
+    }));
+
+    it('should return false when given undefined saveData', inject(saveDataAnalyzer => {
+      expect(saveDataAnalyzer.hasTranscended({})).toBe(false);
     }));
   });
 
