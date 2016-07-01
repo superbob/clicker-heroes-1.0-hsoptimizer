@@ -109,17 +109,23 @@ export default class HSOptimizer {
       }, 0);
     };
 
-    while (remainingHs >= 0) {
-      baseLevelIncrease++;
-      const newLevels = computeNewLevels(ancientList, baseLevel + baseLevelIncrease, alpha);
-      let bank = 0;
-      // if (!hasMorgulis) {
-      //   bank = this.mechanics.getAncientUpgradeCost("Morgulis", 1, baseLevelIncrease);
-      // }
-      remainingHs = hsInStock - getCost(newLevels, chorgorlothLevel) - bank;
+    // Okay this is a little bit magic... and approximate also, but it's fast !
+    let baseOffset = 0;
+    while (remainingHs >= 0 || baseLevelIncrease > 0) {
+      remainingHs = hsInStock;
+      baseLevelIncrease = -1;
+      while (remainingHs >= 0) {
+        baseLevelIncrease++;
+        let levelToCheck = baseLevel + baseOffset + Math.pow(2, baseLevelIncrease);
+        const newLevels = computeNewLevels(ancientList, levelToCheck, alpha);
+        remainingHs = hsInStock - getCost(newLevels, chorgorlothLevel);
+      }
+      if (baseLevelIncrease > 0) {
+        baseOffset += Math.pow(2, baseLevelIncrease - 1);
+      }
     }
+    const newBaseLevel = baseLevel + baseOffset;
 
-    const newBaseLevel = baseLevel + baseLevelIncrease - 1;
     let optimumAncients = ancientList
       .map(ancient => {
         const optimumLevel = normalize(ancient.level, computeNewLevel(ancient.name, playStyle, newBaseLevel, ancient.level, alpha));

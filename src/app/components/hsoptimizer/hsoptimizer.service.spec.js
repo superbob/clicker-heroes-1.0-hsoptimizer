@@ -46,7 +46,7 @@ describe('service hsoptimizer', () => {
       1089984,
       1559,
       42,
-      'hybrid')
+      'hybrid');
     expect(recommendations).toEqual([
       {"name": "Solomon", "level": 548, "optimumLevel": 574, "delta": 26},
       {"name": "Libertas", "level": 881, "optimumLevel": 930, "delta": 49},
@@ -65,6 +65,66 @@ describe('service hsoptimizer', () => {
       {"name": "Kumawakamaru", "level": 11, "optimumLevel": 12, "delta": 1},
       {"name": "Argaiv", "level": 950, "optimumLevel": 1004, "delta": 54},
       {"name": "Juggernaut", "level": 50, "optimumLevel": 145, "delta": 95}
+    ]);
+  }));
+
+  it('should give correct recommendations in an appropriate time', inject(hsoptimizer => {
+    const recommendations = hsoptimizer.computeOptimumLevels(
+      [
+        {"name": "Solomon", "level": 720030000},
+        {"name": "Libertas", "level": 43009999999},
+        {"name": "Siyalatas", "level": 47000009999},
+        {"name": "Mammon", "level": 43000000001},
+        {"name": "Mimzee", "level": 43000000001},
+        {"name": "Dogcog", "level": 63},
+        {"name": "Fortuna", "level": 63},
+        {"name": "Atman", "level": 66},
+        {"name": "Dora", "level": 64 }, { "name": "Bhaal", "level": 15000000001},
+        {"name": "Morgulis", "level": 2.2021e+21},
+        {"name": "Chronos", "level": 58},
+        {"name": "Bubos", "level": 62},
+        {"name": "Fragsworth", "level": 15000000001},
+        {"name": "Vaagur", "level": 63},
+        {"name": "Kumawakamaru", "level": 66},
+        {"name": "Chawedo", "level": 60},
+        {"name": "Hecatoncheir", "level": 60},
+        {"name": "Berserker", "level": 60},
+        {"name": "Sniperino", "level": 62},
+        {"name": "Kleptos", "level": 60},
+        {"name": "Energon", "level": 60},
+        {"name": "Argaiv", "level": 47000010001},
+        {"name": "Juggernaut", "level": 120000001},
+        {"name": "Revolc", "level": 60}
+      ],
+      [
+        {"name": undefined, "level": 3},
+        {"name": "Chor'gorloth", "level": 10},
+        {"name": "Phandoryss", "level": 11},
+        {"name": undefined, "level": 13},
+        {"name": undefined, "level": 19}
+      ],
+      1.192347317103044e+23,
+      6849,
+      111,
+      'hybrid');
+    expect(recommendations).toEqual([
+      {"name": "Solomon", "level": 720030000, "optimumLevel": 2165667541, "delta": 1445637541},
+      {"name": "Libertas", "level": 43009999999, "optimumLevel": 169056568496, "delta": 126046568497},
+      {"name": "Siyalatas", "level": 47000009999, "optimumLevel": 182566488657, "delta": 135566478658},
+      {"name": "Mammon", "level": 43000000001, "optimumLevel": 169056568496, "delta": 126056568495},
+      {"name": "Mimzee", "level": 43000000001, "optimumLevel": 169056568496, "delta": 126056568495},
+      {"name": "Dogcog", "level": 63, "optimumLevel": 67, "delta": 4},
+      {"name": "Fortuna", "level": 63, "optimumLevel": 67, "delta": 4},
+      {"name": "Atman", "level": 66, "optimumLevel": 70, "delta": 4},
+      {"name": "Dora", "level": 64, "optimumLevel": 68, "delta": 4},
+      {"name": "Bhaal", "level": 15000000001, "optimumLevel": 91283244329, "delta": 76283244328},
+      {"name": "Morgulis", "level": 2.2021e+21, "optimumLevel": 3.333052278054651e+22, "delta": 3.112842278054651e+22},
+      {"name": "Chronos", "level": 58, "optimumLevel": 65, "delta": 7},
+      {"name": "Bubos", "level": 62, "optimumLevel": 66, "delta": 4},
+      {"name": "Fragsworth", "level": 15000000001, "optimumLevel": 91283244329, "delta": 76283244328},
+      {"name": "Kumawakamaru", "level": 66, "optimumLevel": 67, "delta": 1},
+      {"name": "Argaiv", "level": 47000010001, "optimumLevel": 182566488657, "delta": 135566478656},
+      {"name": "Juggernaut", "level": 120000001, "optimumLevel": 586560554, "delta": 466560553}
     ]);
   }));
 
