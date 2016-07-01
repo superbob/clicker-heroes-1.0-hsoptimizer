@@ -5,6 +5,6 @@ export default function exponential() {
     if (input <= limit) {
       return input.toLocaleString();
     }
-    return input.toExponential();
+    return input.toExponential(3).replace('+', '');
   }
 }
