@@ -115,6 +115,11 @@ describe('service maths', () => {
       expect(maths.polynomial1_5.sumApprox(4)).toBe(18);
       expect(maths.sum(maths.polynomial1_5.unit)(4)).toBe(18);
     }));
+
+    it('should return 18 when given 4', inject(maths => {
+      expect(maths.polynomial1_5.sumApprox(100)).toBe(40502);
+      expect(maths.sum(maths.polynomial1_5.unit)(100)).toBe(40548);
+    }));
   });
 
   describe('sum', () => {

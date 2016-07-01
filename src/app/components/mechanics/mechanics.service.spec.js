@@ -28,12 +28,62 @@ describe('service mechanics', () => {
   });
 
   describe('getAncientUpgradeCost', () => {
-    it('should return 50 when given Siyalatas and 1 to 10', inject(mechanics => {
-      expect(mechanics.getAncientUpgradeCost('Siyalatas', 1, 10)).toBe(54);
+    it('should return 1 when given Morgulis and 1 to 2', inject(mechanics => {
+      expect(mechanics.getAncientUpgradeCost('Morgulis', 1, 2)).toBe(1);
+    }));
+
+    it('should return 1 when given Siyalatas and 1 to 2', inject(mechanics => {
+      expect(mechanics.getAncientUpgradeCost('Siyalatas', 1, 2)).toBe(1);
+    }));
+
+    it('should return 2 when given Siyalatas and 2 to 3', inject(mechanics => {
+      expect(mechanics.getAncientUpgradeCost('Siyalatas', 2, 3)).toBe(2);
+    }));
+
+    it('should return 3 when given Siyalatas and 1 to 3', inject(mechanics => {
+      expect(mechanics.getAncientUpgradeCost('Siyalatas', 1, 3)).toBe(3);
+    }));
+
+    it('should return 3 when given Siyalatas and 3 to 4', inject(mechanics => {
+      expect(mechanics.getAncientUpgradeCost('Siyalatas', 3, 4)).toBe(3);
+    }));
+
+    it('should return 4 when given Siyalatas and 1 to 4', inject(mechanics => {
+      expect(mechanics.getAncientUpgradeCost('Siyalatas', 1, 4)).toBe(6);
+    }));
+
+    it('should return 45 when given Siyalatas and 1 to 10', inject(mechanics => {
+      expect(mechanics.getAncientUpgradeCost('Siyalatas', 1, 10)).toBe(45);
+    }));
+
+    // TODO fix edge case
+    // it('should return 1 when given Solomon and 1 to 2', inject(mechanics => {
+    //   expect(mechanics.getAncientUpgradeCost('Solomon', 1, 2)).toBe(1);
+    // }));
+
+    // TODO fix edge case
+    // it('should return 3 when given Solomon and 2 to 3', inject(mechanics => {
+    //   expect(mechanics.getAncientUpgradeCost('Solomon', 2, 3)).toBe(3);
+    // }));
+
+    it('should return 4 when given Solomon and 1 to 3', inject(mechanics => {
+      expect(mechanics.getAncientUpgradeCost('Solomon', 1, 3)).toBe(4);
+    }));
+
+    it('should return 6 when given Solomon and 3 to 4', inject(mechanics => {
+      expect(mechanics.getAncientUpgradeCost('Solomon', 3, 4)).toBe(6);
+    }));
+
+    it('should return 10 when given Solomon and 1 to 4', inject(mechanics => {
+      expect(mechanics.getAncientUpgradeCost('Solomon', 1, 4)).toBe(10);
+    }));
+
+    it('should return 112 when given Solomon and 1 to 10', inject(mechanics => {
+      expect(mechanics.getAncientUpgradeCost('Solomon', 1, 10)).toBe(112);
     }));
 
     it('should return 50 when given Solomon and 1 to 100', inject(mechanics => {
-      expect(mechanics.getAncientUpgradeCost('Solomon', 1, 100)).toBe(40500);
+      expect(mechanics.getAncientUpgradeCost('Solomon', 1, 100)).toBe(39502);
     }));
   });
 
