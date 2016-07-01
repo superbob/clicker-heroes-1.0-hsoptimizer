@@ -1,5 +1,7 @@
 'use strict';
 
+//TOTO read "numberDisplayMode" and "transcendent"
+
 export class MainController {
   constructor ($scope, $log, saveDecoder, formulas, saveDataAnalyzer, hsoptimizer) {
     'ngInject';
