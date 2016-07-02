@@ -69,6 +69,6 @@ export default class Mechanics {
 
   // Check edges (+/-1 on edges)
   getAncientUpgradeCost(name, currentLevel, newLevel) {
-    return this.getAncientCostSum(name)(newLevel - 1) - this.getAncientCostSum(name)(currentLevel - 1);
+    return this.getAncientCostSum(name)(newLevel) - this.getAncientCostSum(name)(currentLevel);
   }
 }
