@@ -20,7 +20,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">Data</div>
       <div class="panel-body">
-        <div class="col-md-6">
+        <div class="col-md-4">
           <form>
             <div class="form-group">
               <label for="saveData">Save data</label>
@@ -29,8 +29,8 @@
             <p class="text-danger" ng-show="error">{{error}}</p>
           </form>
         </div>
-        <div class="col-md-6">
-          <form class="form-inline">
+        <form class="form-inline">
+          <div class="col-md-4">
             <div class="form-group">
               <label for="ascendZone">Ascend zone</label>
               <input type="text" class="form-control" id="ascendZone" ng-model="ascendZone">
@@ -59,18 +59,27 @@
             <div class="form-group">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" ng-model="includeSoulsFromAscend">Include souls from ascension<span ng-if="saveData"> (+{{hsFromAscend | exponential}})</span>
+                  <input type="checkbox" ng-model="includeSoulsFromAscend">Include souls from ascension<span ng-if="saveData"> (+{{hsFromAscend | units:useScientificNotation}})</span>
                 </label>
               </div>
             </div>
-          </form>
-        </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="useScientificNotation">Use scientific notation
+                </label>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 
   <div class="row" ng-if="saveData">
-      <p>You have {{hsInStock | exponential}} HS in stock</p>
+      <p>You have {{hsInStock | units:useScientificNotation}} HS in stock</p>
   </div>
 
   <div class="row" ng-if="saveData">
@@ -86,9 +95,9 @@
         <tbody>
           <tr ng-repeat="ancient in ancients | orderBy : 'name'">
             <td>{{ancient.name}}</td>
-            <td>{{ancient.level | exponential}}</td>
-            <td>{{ancient.optimumLevel | exponential}}</td>
-            <td><strong>+{{ancient.optimumLevel - ancient.level | exponential}}</strong></td>
+            <td>{{ancient.level | units:useScientificNotation}}</td>
+            <td>{{ancient.optimumLevel | units:useScientificNotation}}</td>
+            <td><strong>+{{ancient.optimumLevel - ancient.level | units:useScientificNotation}}</strong></td>
           </tr>
         </tbody>
       </table>

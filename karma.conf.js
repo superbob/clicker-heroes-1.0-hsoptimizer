@@ -19,6 +19,8 @@ function listFiles() {
   var patterns = wiredep(wiredepOptions).js
     .concat([
       path.join(conf.paths.tmp, '/serve/app/index.module.js'),
+      // wiredep of intl doesn't include locales, adding en-US explicitly
+      path.join(conf.paths.tmp, '../bower_components/intl/locale-data/jsonp/en-US.js'),
     ])
     .concat(pathSrcHtml);
 

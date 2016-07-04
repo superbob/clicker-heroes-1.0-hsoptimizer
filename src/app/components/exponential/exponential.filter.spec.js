@@ -12,7 +12,7 @@ describe('filter exponential', () => {
   }));
 
   it('should be return 100000 when given 100000', inject(exponentialFilter => {
-    expect(exponentialFilter(100000)).toBe("100000");
+    expect(exponentialFilter(100000)).toBe("100,000");
   }));
 
   it('should be return 1e6 when given 1000000', inject(exponentialFilter => {

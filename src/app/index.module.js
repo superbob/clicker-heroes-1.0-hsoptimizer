@@ -13,6 +13,7 @@ import mechanics from '../app/components/mechanics/mechanics.service';
 import saveDataAnalyzer from '../app/components/saveDataAnalyzer/savedataanalyzer.service';
 import saveDecoder from '../app/components/saveDecoder/savedecoder.service';
 import exponential from '../app/components/exponential/exponential.filter';
+import units from '../app/components/units/units.filter';
 
 angular.module('clickerHeroes10Hsoptimizer', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ngRoute', 'ui.bootstrap', 'toastr'])
   .constant('moment', moment)
@@ -26,4 +27,5 @@ angular.module('clickerHeroes10Hsoptimizer', ['ngAnimate', 'ngCookies', 'ngTouch
   .service('saveDataAnalyzer', saveDataAnalyzer)
   .service('saveDecoder', saveDecoder)
   .filter('exponential', exponential)
+  .filter('units', units)
   .controller('MainController', MainController)

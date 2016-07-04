@@ -17,6 +17,7 @@ export class MainController {
       $scope.error = undefined;
 
       angular.element('#saveData').parent().removeClass('has-error');
+      $scope.useScientificNotation = false;
     };
 
     resetForm();
@@ -50,6 +51,7 @@ export class MainController {
         $scope.ascendZone = saveDataAnalyzer.getAscendZone(saveData);
         $scope.playStyle = saveDataAnalyzer.detectPlayStyle(saveData);
         $scope.hsFromAscend = saveDataAnalyzer.getHsUponAscend(saveData);
+        $scope.useScientificNotation = saveDataAnalyzer.getNumberDisplayMode(saveData);
       }
     });
 

@@ -48,4 +48,8 @@ export default class SaveDataAnalyzer {
     return !!saveData.transcendent;
   }
 
+  getNumberDisplayMode(saveData) {
+    return !!saveData.numberDisplayMode;
+  }
+
 }

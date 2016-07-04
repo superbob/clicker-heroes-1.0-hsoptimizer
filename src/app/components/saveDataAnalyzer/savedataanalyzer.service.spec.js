@@ -143,4 +143,22 @@ describe('service saveDataAnalyzer', () => {
     }));
   });
 
+  describe('getNumberDisplayMode', () => {
+    it('should return false when undefined in saveData', inject(saveDataAnalyzer => {
+      expect(saveDataAnalyzer.getNumberDisplayMode(saveData)).toBe(false);
+    }));
+  });
+
+  describe('getNumberDisplayMode', () => {
+    it('should return false when false in saveData', inject(saveDataAnalyzer => {
+      expect(saveDataAnalyzer.getNumberDisplayMode({numberDisplayMode: false})).toBe(false);
+    }));
+  });
+
+  describe('getNumberDisplayMode', () => {
+    it('should return true when true in saveData', inject(saveDataAnalyzer => {
+      expect(saveDataAnalyzer.getNumberDisplayMode({numberDisplayMode: true})).toBe(true);
+    }));
+  });
+
 });
