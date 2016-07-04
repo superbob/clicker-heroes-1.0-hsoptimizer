@@ -46,6 +46,25 @@ a.selectable {
   border-top-style: none;
 }
 
+/* Customizing angularjs-slider mark that is way too large */
+.rzslider .rz-pointer {
+  width: 16px;
+  height: 16px;
+  top: -7px;
+  background-color: $brand-primary;
+}
+
+.rzslider .rz-pointer:after {
+  top: 4px;
+  left: 4px;
+}
+
+.rzslider .rz-pointer.rz-active:after {
+  top: 4px;
+  left: 4px;
+  background-color: $brand-primary;
+}
+
 /* Custom page header */
 .header {
   border-bottom: 1px solid #e5e5e5;

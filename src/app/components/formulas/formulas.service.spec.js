@@ -101,13 +101,13 @@ describe('service formulas', () => {
 
   describe('computeHybridBhaalLevel formula', () => {
     it('should return 50 when given 100', inject(formulas => {
-      expect(Math.round(formulas.computeHybridBhaalLevel(BASE_LEVEL))).toBe(50);
+      expect(Math.round(formulas.computeHybridBhaalLevel(BASE_LEVEL, 0.5))).toBe(50);
     }));
   });
 
   describe('computeHybridJuggernautLevel formula', () => {
     it('should return 23 when given 100', inject(formulas => {
-      expect(Math.round(formulas.computeHybridJuggernautLevel(BASE_LEVEL))).toBe(23);
+      expect(Math.round(formulas.computeHybridJuggernautLevel(BASE_LEVEL, 0.5))).toBe(23);
     }));
   });
 

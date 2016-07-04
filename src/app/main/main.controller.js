@@ -18,6 +18,40 @@ export class MainController {
 
       angular.element('#saveData').parent().removeClass('has-error');
       $scope.useScientificNotation = false;
+      $scope.hybridRatio = 0.5;
+      $scope.slider.value = 0.5;
+    };
+
+    $scope.slider = {
+      value: 0.5,
+      options: {
+        stepsArray: [
+          {value: 0.1},
+          {value: 0.2},
+          {value: 0.3},
+          {value: 0.4},
+          {value: 0.5},
+          {value: 0.6},
+          {value: 0.7},
+          {value: 0.8},
+          {value: 0.9},
+          {value: 1},
+          {value: 1.5},
+          {value: 2},
+          {value: 2.5},
+          {value: 3},
+          {value: 4},
+          {value: 5},
+          {value: 6},
+          {value: 7},
+          {value: 8},
+          {value: 9},
+          {value: 10}
+        ],
+        onChange: (id, value) => {
+          $scope.hybridRatio = value
+        }
+      }
     };
 
     resetForm();
@@ -57,7 +91,7 @@ export class MainController {
 
     // see http://stackoverflow.com/questions/21088845/can-i-debounce-or-throttle-a-watched-input-in-angularjs-using-lodash
     // TODO debounce (lodash)
-    $scope.$watchGroup(['saveData', 'ascendZone', 'playStyle', 'includeSoulsFromAscend'], function([saveData, ascendZone, playStyle, includeSoulsFromAscend]) {
+    $scope.$watchGroup(['saveData', 'ascendZone', 'playStyle', 'includeSoulsFromAscend', 'hybridRatio'], function([saveData, ascendZone, playStyle, includeSoulsFromAscend, hybridRatio]) {
       if (saveData) {
         let hs = $scope.hsInStock;
         if (includeSoulsFromAscend) {
@@ -69,7 +103,8 @@ export class MainController {
           hs,
           ascendZone,
           saveDataAnalyzer.getAncientSoulsTotal(saveData),
-          playStyle);
+          playStyle,
+          hybridRatio);
       }
     });
   }

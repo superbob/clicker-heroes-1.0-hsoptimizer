@@ -44,18 +44,18 @@ export default class HSOptimizer {
       'Fortuna':      allStyles(formulas.computeFortunaLevel),
       'Atman':        allStyles(formulas.computeAtmanLevel),
       'Dora':         allStyles(formulas.computeDoraLevel),
-      'Bhaal':        activeOrHybrid(returnBaseLevel, formulas.computeHybridBhaalLevel),
+      'Bhaal':        activeOrHybrid(returnBaseLevel, (baseLevel, old, alpha, hybridRatio) => formulas.computeHybridBhaalLevel(baseLevel, hybridRatio)),
       'Morgulis':     allStyles(formulas.computeMorgulisLevel),
       'Chronos':      allStyles(formulas.computeChronosLevel),
       'Bubos':        allStyles(formulas.computeBubosLevel),
-      'Fragsworth':   activeOrHybrid(returnBaseLevel, formulas.computeHybridBhaalLevel),
+      'Fragsworth':   activeOrHybrid(returnBaseLevel, (baseLevel, old, alpha, hybridRatio) => formulas.computeHybridBhaalLevel(baseLevel, hybridRatio)),
       'Kumawakamaru': allStyles(formulas.computeKumawakamaruLevel),
       'Argaiv':       allStyles(returnBaseLevel),
-      'Juggernaut':   activeOrHybrid(formulas.computeActiveJuggernautLevel, formulas.computeHybridJuggernautLevel)
+      'Juggernaut':   activeOrHybrid(formulas.computeActiveJuggernautLevel, (baseLevel, old, alpha, hybridRatio) => formulas.computeHybridJuggernautLevel(baseLevel, hybridRatio))
     };
   }
 
-  computeOptimumLevels(ancientList, outsiders, hsInStock, ascendZone, ancientSoulsTotal, playStyle) {
+  computeOptimumLevels(ancientList, outsiders, hsInStock, ascendZone, ancientSoulsTotal, playStyle, hybridRatio) {
     const phandoryssLevel = outsiders.filter(outsider => outsider.name === 'Phandoryss')[0].level;
     const chorgorlothLevel = outsiders.filter(outsider => outsider.name === 'Chor\'gorloth')[0].level;
 
@@ -74,12 +74,12 @@ export default class HSOptimizer {
     let remainingHs = hsInStock;
     let baseLevelIncrease = 0;
 
-    const computeNewLevel = (ancientName, playStyle, newBaseLevel, oldLevel, alpha) => {
+    const computeNewLevel = (ancientName, playStyle, newBaseLevel, oldLevel, alpha, hybridRatio) => {
       const optimizationFormula = this.ancientsOptimizedLevel[ancientName];
       if (optimizationFormula) {
         const playStyleForumla = optimizationFormula(playStyle);
         if (playStyleForumla) {
-          return playStyleForumla(newBaseLevel, oldLevel, alpha);
+          return playStyleForumla(newBaseLevel, oldLevel, alpha, hybridRatio);
         }
       }
     };
@@ -90,12 +90,12 @@ export default class HSOptimizer {
       return Math.max(oldLevel, Math.round(newLevel));
     };
 
-    const computeNewLevels = function computeNewLevels(currentAncients, newBaseLevel, alpha) {
+    const computeNewLevels = function computeNewLevels(currentAncients, newBaseLevel, alpha, hybridRatio) {
       return currentAncients.map(ancient => {
         return {
           name: ancient.name,
           currentLevel: ancient.level,
-          optimizedLevel: normalize(ancient.level, computeNewLevel(ancient.name, playStyle, newBaseLevel, ancient.level, alpha))
+          optimizedLevel: normalize(ancient.level, computeNewLevel(ancient.name, playStyle, newBaseLevel, ancient.level, alpha, hybridRatio))
         };
       }).filter(ancient => ancient.optimizedLevel !== undefined);
     };
@@ -117,7 +117,7 @@ export default class HSOptimizer {
       while (remainingHs >= 0) {
         baseLevelIncrease++;
         let levelToCheck = baseLevel + baseOffset + Math.pow(2, baseLevelIncrease);
-        const newLevels = computeNewLevels(ancientList, levelToCheck, alpha);
+        const newLevels = computeNewLevels(ancientList, levelToCheck, alpha, hybridRatio);
         remainingHs = hsInStock - getCost(newLevels, chorgorlothLevel);
       }
       if (baseLevelIncrease > 0) {
@@ -128,7 +128,7 @@ export default class HSOptimizer {
 
     let optimumAncients = ancientList
       .map(ancient => {
-        const optimumLevel = normalize(ancient.level, computeNewLevel(ancient.name, playStyle, newBaseLevel, ancient.level, alpha));
+        const optimumLevel = normalize(ancient.level, computeNewLevel(ancient.name, playStyle, newBaseLevel, ancient.level, alpha, hybridRatio));
         return {
           name: ancient.name,
           level: ancient.level,

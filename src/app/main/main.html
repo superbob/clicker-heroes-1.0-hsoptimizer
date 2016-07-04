@@ -36,40 +36,51 @@
               <input type="text" class="form-control" id="ascendZone" ng-model="ascendZone">
             </div>
             <div class="form-group">
-              <label>Playstyle</label>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="playstyle" id="playStyleIdle" value="idle" ng-model="playStyle" checked>
-                  Idle
-                </label>
-              </div>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="playstyle" id="playStyleHybrid" value="hybrid" ng-model="playStyle">
-                  Hybrid
-                </label>
-              </div>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="playstyle" id="playStyleActive" value="active" ng-model="playStyle">
-                  Active
-                </label>
-              </div>
-            </div>
-            <div class="form-group">
               <div class="checkbox">
                 <label>
                   <input type="checkbox" ng-model="includeSoulsFromAscend">Include souls from ascension<span ng-if="saveData"> (+{{hsFromAscend | units:useScientificNotation}})</span>
                 </label>
               </div>
             </div>
-          </div>
-          <div class="col-md-4">
             <div class="form-group">
               <div class="checkbox">
                 <label>
                   <input type="checkbox" ng-model="useScientificNotation">Use scientific notation
                 </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="row">
+              <div class="form-group">
+                <label>Playstyle</label>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="playstyle" id="playStyleIdle" value="idle" ng-model="playStyle" checked>
+                    Idle
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="playstyle" id="playStyleHybrid" value="hybrid" ng-model="playStyle">
+                    Hybrid
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="playstyle" id="playStyleActive" value="active" ng-model="playStyle">
+                    Active
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="row" ng-if="playStyle == 'hybrid'">
+              <div class="form-group">
+                <span
+                  uib-tooltip="Warning! Experimental feature. Ratios > 2 may lead to non-optimal or even impossible situations."
+                  tooltip-placement="right">Hybrid Idle/Active ratio
+                  <rzslider rz-slider-model="slider.value" rz-slider-options="slider.options"></rzslider>
+                </span>
               </div>
             </div>
           </div>

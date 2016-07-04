@@ -46,7 +46,8 @@ describe('service hsoptimizer', () => {
       1089984,
       1559,
       42,
-      'hybrid');
+      'hybrid',
+      0.5);
     expect(recommendations).toEqual([
       {"name": "Solomon", "level": 548, "optimumLevel": 574, "delta": 26},
       {"name": "Libertas", "level": 881, "optimumLevel": 930, "delta": 49},
@@ -106,7 +107,8 @@ describe('service hsoptimizer', () => {
       1.192347317103044e+23,
       6849,
       111,
-      'hybrid');
+      'hybrid',
+      0.5);
     expect(recommendations).toEqual([
       {"name": "Solomon", "level": 720030000, "optimumLevel": 2165667541, "delta": 1445637541},
       {"name": "Libertas", "level": 43009999999, "optimumLevel": 169056568496, "delta": 126046568497},

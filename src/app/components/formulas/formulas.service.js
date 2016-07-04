@@ -49,12 +49,12 @@ export default class Formulas {
   // and https://www.reddit.com/r/ClickerHeroes/comments/3y57jd/updated_rules_of_thumb/
   // changed ratio from 0.1 to 0.5 in respect to original Rules of Thumb
   // for a more active power !
-  computeHybridBhaalLevel(baseLevel) {
-    return 0.5 * baseLevel;
+  computeHybridBhaalLevel(baseLevel, hybridRatio) {
+    return hybridRatio * baseLevel;
   }
 
-  computeHybridJuggernautLevel(baseLevel) {
-    return Math.pow(0.5 * baseLevel, 0.8);
+  computeHybridJuggernautLevel(baseLevel, hybridRatio) {
+    return Math.pow(hybridRatio * baseLevel, 0.8);
   }
 
   computeActiveJuggernautLevel(baseLevel) {

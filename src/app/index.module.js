@@ -16,7 +16,9 @@ import exponential from '../app/components/exponential/exponential.filter';
 import units from '../app/components/units/units.filter';
 import numberToExport from '../app/components/numberToExport/numbertoexport.filter';
 
-angular.module('clickerHeroes10Hsoptimizer', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ngRoute', 'ui.bootstrap', 'ngclipboard'])
+angular.module(
+  'clickerHeroes10Hsoptimizer',
+  ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ngRoute', 'ui.bootstrap', 'ngclipboard', 'rzModule'])
   .constant('moment', moment)
   .config(config)
   .config(routerConfig)
