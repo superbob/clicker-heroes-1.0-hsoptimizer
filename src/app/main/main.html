@@ -97,7 +97,12 @@
             <td>{{ancient.name}}</td>
             <td>{{ancient.level | units:useScientificNotation}}</td>
             <td>{{ancient.optimumLevel | units:useScientificNotation}}</td>
-            <td><strong>+{{ancient.optimumLevel - ancient.level | units:useScientificNotation}}</strong></td>
+            <td><strong><a
+              class="selectable"
+              ngclipboard
+              data-clipboard-text="{{ancient.optimumLevel - ancient.level | numberToExport}}"
+              uib-tooltip="Click to copy {{ancient.optimumLevel - ancient.level | numberToExport}} to clipboard"
+              tooltip-placement="right">+{{ancient.optimumLevel - ancient.level | units:useScientificNotation}}</a></strong></td>
           </tr>
         </tbody>
       </table>

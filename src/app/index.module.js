@@ -14,8 +14,9 @@ import saveDataAnalyzer from '../app/components/saveDataAnalyzer/savedataanalyze
 import saveDecoder from '../app/components/saveDecoder/savedecoder.service';
 import exponential from '../app/components/exponential/exponential.filter';
 import units from '../app/components/units/units.filter';
+import numberToExport from '../app/components/numberToExport/numbertoexport.filter';
 
-angular.module('clickerHeroes10Hsoptimizer', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ngRoute', 'ui.bootstrap', 'toastr'])
+angular.module('clickerHeroes10Hsoptimizer', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ngRoute', 'ui.bootstrap', 'ngclipboard'])
   .constant('moment', moment)
   .config(config)
   .config(routerConfig)
@@ -28,4 +29,5 @@ angular.module('clickerHeroes10Hsoptimizer', ['ngAnimate', 'ngCookies', 'ngTouch
   .service('saveDecoder', saveDecoder)
   .filter('exponential', exponential)
   .filter('units', units)
+  .filter('numberToExport', numberToExport)
   .controller('MainController', MainController)

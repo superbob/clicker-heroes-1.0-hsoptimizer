@@ -25,6 +25,10 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
   font-size: 8pt;
 }
 
+a.selectable {
+  color: inherit;
+}
+
 /* Overriding bootstrap classes */
 .table-condensed {
   > tbody {
