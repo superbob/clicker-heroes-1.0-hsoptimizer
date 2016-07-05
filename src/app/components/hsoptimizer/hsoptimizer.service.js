@@ -59,13 +59,9 @@ export default class HSOptimizer {
     const phandoryssLevel = outsiders.filter(outsider => outsider.name === 'Phandoryss')[0].level;
     const chorgorlothLevel = outsiders.filter(outsider => outsider.name === 'Chor\'gorloth')[0].level;
 
-    let baseLevel;
-    if (playStyle === 'active') {
-      baseLevel = ancientList.filter(ancient => ancient.name === 'Fragsworth')[0].level;
-    } else {
-      baseLevel = ancientList.filter(ancient => ancient.name === 'Siyalatas')[0].level;
-    }
+    let baseLevel = 1;
 
+    // TODO add soul bank when Morgulis has not been summon
     // const hasMorgulis = ancientList.some(ancient => ancient.name === 'Morgulis');
 
     const tp = this.formulas.computeTranscendencePower(ancientSoulsTotal, phandoryssLevel);
@@ -101,15 +97,14 @@ export default class HSOptimizer {
     };
 
     const getCost = (ancientLevels, chorgorlothLevel) => {
-      const ancientCostMultiplier = Math.pow(0.95, chorgorlothLevel);
-
-      return ancientLevels.reduce((totalCost, ancient) => {
-        let ancientCost = this.mechanics.getAncientUpgradeCost(ancient.name, ancient.currentLevel, ancient.optimizedLevel);
-        return totalCost + ancientCost * ancientCostMultiplier;
-      }, 0);
+      return ancientLevels.reduce(
+        (totalCost, ancient) =>
+          totalCost + this.mechanics.getAncientUpgradeCost(ancient.name, ancient.currentLevel, ancient.optimizedLevel, chorgorlothLevel),
+        0);
     };
 
     // Okay this is a little bit magic... and approximate also, but it's fast !
+    // TODO maybe switch to a more simple dichotomy
     let baseOffset = 0;
     while (remainingHs >= 0 || baseLevelIncrease > 0) {
       remainingHs = hsInStock;
