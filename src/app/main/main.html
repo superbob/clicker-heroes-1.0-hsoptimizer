@@ -10,10 +10,13 @@
       <a href="https://www.reddit.com/r/ClickerHeroes/comments/4naohc/math_and_transcendance"><strong>Math and Transcendance</strong></a>
       by <a href="https://www.reddit.com/user/sugima">/u/sugima</a> and
       <a href="https://www.reddit.com/r/ClickerHeroes/comments/3y57jd/updated_rules_of_thumb/"><strong>Updated Rules of Thumb!</strong></a>
-      by <a href="https://www.reddit.com/user/TinDragon">/u/TinDragon</a> to compute the idle, active and hybrid builds.</p>
+      by <a href="https://www.reddit.com/user/TinDragon">/u/TinDragon</a>.</p>
+    <p>It can compute optimized ancients levels using idle, active and hybrid builds.</p>
     <p>You need at least Siyalatas or Fragsworth at level 1 and to have transcended at least once to make it work.</p>
-    <p>Source code is <a href="https://www.github.com/superbob/clicker-heroes-1.0-hsoptimizer">here</a>, it is open to issues and pull requests.</p>
-    <p>Announcement and discussions on <a href="https://www.reddit.com/r/ClickerHeroes/comments/4qhud9/transcendence_hs_optimizer">/r/ClickerHeroes/comments/4qhud9/transcendence_hs_optimizer</a>
+    <p>Source code is <a href="https://www.github.com/superbob/clicker-heroes-1.0-hsoptimizer">here</a>, feel free to open to
+      <a href="https://github.com/superbob/clicker-heroes-1.0-hsoptimizer/issues">issues</a> and
+      <a href="https://github.com/superbob/clicker-heroes-1.0-hsoptimizer/pulls">pull requests</a>.</p>
+    <p>Announcement and discussions on <a href="https://www.reddit.com/r/ClickerHeroes/comments/4qhud9/transcendence_hs_optimizer">/r/ClickerHeroes/comments/4qhud9/transcendence_hs_optimizer</a>.
   </div>
 
   <div class="row">
@@ -76,11 +79,8 @@
             </div>
             <div class="row" ng-if="playStyle == 'hybrid'">
               <div class="form-group">
-                <span
-                  uib-tooltip="Warning! Experimental feature. Ratios > 2 may lead to non-optimal or even impossible situations."
-                  tooltip-placement="right">Hybrid Idle/Active ratio
-                  <rzslider rz-slider-model="slider.value" rz-slider-options="slider.options"></rzslider>
-                </span>
+                Hybrid Idle/Active ratio
+                <rzslider rz-slider-model="slider.value" rz-slider-options="slider.options"></rzslider>
               </div>
             </div>
           </div>
@@ -125,14 +125,15 @@
       <div class="panel-body">
         <p>This optimizer is primarly based on
           <a href="https://www.reddit.com/r/ClickerHeroes/comments/4naohc/math_and_transcendance">these formulas</a>
-          by <a href="https://www.reddit.com/user/sugima">/u/sugima</a> for basic idle optimization.</p>
+          by <a href="https://www.reddit.com/user/sugima">/u/sugima</a> for idle builds.</p>
         <p><a href="https://www.reddit.com/r/ClickerHeroes/comments/3y57jd/updated_rules_of_thumb/">Older formulas</a>
-          by <a href="https://www.reddit.com/user/TinDragon">/u/TinDragon</a> are used to compute the active and hybrid builds.</p>
+          by <a href="https://www.reddit.com/user/TinDragon">/u/TinDragon</a> are used to compute active and hybrid builds.</p>
         <p>Also, <a href="https://www.reddit.com/user/Shruikan864">/u/Shruikan864</a>'s
           <a href="https://www.reddit.com/r/ClickerHeroes/comments/4nox6i/rules_of_thumb_10_spreadsheet/">Rules of Thumb 1.0 Spreadsheet</a>
-          was used to get and verify some important formulas.</p>
+          was used to get and verify some important formulas (Chor multiplier, TP, alpha, ...).</p>
         <p>Important variations with other calculators can come from rounding, as a "round to the nearest integer" is applied
-          in computed optimized ancient levels instead of a floor that can be seen in other calculators (such as <em>kepow</em> or <em>Rules of Thumb 1.0 Spreadsheet</em>).</p>
+          in computed optimized ancient levels instead of a floor that can be seen in other calculators
+          (such as <a href="https://kepow.org/clickerheroes">kepow</a> or <em>Rules of Thumb 1.0 Spreadsheet</em>).</p>
       </div>
     </div>
   </div>
