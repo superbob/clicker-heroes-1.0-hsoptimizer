@@ -73,6 +73,9 @@ export default class Mechanics {
 
   // Check edges (+/-1 on edges)
   getAncientUpgradeCost(name, currentLevel, newLevel, chorgorlothLevel = 0) {
-    return (this.getAncientCostSum(name)(newLevel) - this.getAncientCostSum(name)(currentLevel)) * this.getAncientCostMultiplier(chorgorlothLevel);
+    return Math.ceil(
+      (this.getAncientCostSum(name)(newLevel)
+        - this.getAncientCostSum(name)(currentLevel))
+      * this.getAncientCostMultiplier(chorgorlothLevel));
   }
 }

@@ -129,4 +129,42 @@ describe('service hsoptimizer', () => {
       {"name": "Juggernaut", "level": 120000001, "optimumLevel": 586560554, "delta": 466560553}
     ]);
   }));
+
+  it('should give affordable recommendations', inject(hsoptimizer => {
+    const recommendations = hsoptimizer.computeOptimumLevels(
+      [
+        {"name": "Atman", "level": 6},
+        {"name": "Dogcog", "level": 2},
+        {"name": "Dora", "level": 5},
+        {"name": "Fortuna", "level": 3},
+        {"name": "Kumawakamaru", "level": 1},
+        {"name": "Libertas", "level": 22},
+        {"name": "Mammon", "level": 22},
+        {"name": "Mimzee", "level": 22},
+        {"name": "Siyalatas", "level": 24}
+      ],
+      [
+        {"name": undefined, "level": 0},
+        {"name": "Chor'gorloth", "level": 15},
+        {"name": "Phandoryss", "level": 3},
+        {"name": undefined, "level": 0},
+        {"name": undefined, "level": 0}
+      ],
+      392,
+      200,
+      60,
+      'idle',
+      0.5);
+    expect(recommendations).toEqual([
+      {"name": "Atman", "level": 6, "optimumLevel": 7, "delta": 1},
+      {"name": "Dogcog", "level": 2, "optimumLevel": 2, "delta": 0},
+      {"name": "Dora", "level": 5, "optimumLevel": 6, "delta": 1},
+      {"name": "Fortuna", "level": 3, "optimumLevel": 4, "delta": 1},
+      {"name": "Kumawakamaru", "level": 1, "optimumLevel": 2, "delta": 1},
+      {"name": "Libertas", "level": 22, "optimumLevel": 28, "delta": 6},
+      {"name": "Mammon", "level": 22, "optimumLevel": 28, "delta": 6},
+      {"name": "Mimzee", "level": 22, "optimumLevel": 28, "delta": 6},
+      {"name": "Siyalatas", "level": 24, "optimumLevel": 30, "delta": 6}
+    ]);
+  }));
 });
