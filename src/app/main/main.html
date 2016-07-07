@@ -27,28 +27,29 @@
           <form>
             <div class="form-group">
               <label for="saveData">Save data</label>
-              <textarea class="form-control" id="saveData" rows="3" placeholder="Paste your save data here" ng-model="encodedSaveData" autofocus></textarea>
+              <textarea class="form-control" id="saveData" rows="3" placeholder="Paste your save data here" ng-model="main.encodedSaveData" autofocus></textarea>
             </div>
-            <p class="text-danger" ng-show="error">{{error}}</p>
+            <p class="text-danger" ng-show="main.error">{{main.error}}</p>
           </form>
         </div>
         <form class="form-inline">
           <div class="col-md-4">
             <div class="form-group">
               <label for="ascendZone">Ascend zone</label>
-              <input type="text" class="form-control" id="ascendZone" ng-model="ascendZone">
+              <input type="text" class="form-control" id="ascendZone" ng-model="main.ascendZone">
             </div>
             <div class="form-group">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" ng-model="includeSoulsFromAscend">Include souls from ascension<span ng-if="saveData"> (+{{hsFromAscend | units:useScientificNotation}})</span>
+                  <input type="checkbox" ng-model="main.includeSoulsFromAscend">Include souls from ascension<span ng-if="main.saveData">
+                    (+{{main.hsFromAscend | units:useScientificNotation}})</span>
                 </label>
               </div>
             </div>
             <div class="form-group">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" ng-model="useScientificNotation">Use scientific notation
+                  <input type="checkbox" ng-model="main.useScientificNotation">Use scientific notation
                 </label>
               </div>
             </div>
@@ -59,28 +60,28 @@
                 <label>Playstyle</label>
                 <div class="radio">
                   <label>
-                    <input type="radio" name="playstyle" id="playStyleIdle" value="idle" ng-model="playStyle" checked>
+                    <input type="radio" name="playstyle" id="playStyleIdle" value="idle" ng-model="main.playStyle" checked>
                     Idle
                   </label>
                 </div>
                 <div class="radio">
                   <label>
-                    <input type="radio" name="playstyle" id="playStyleHybrid" value="hybrid" ng-model="playStyle">
+                    <input type="radio" name="playstyle" id="playStyleHybrid" value="hybrid" ng-model="main.playStyle">
                     Hybrid
                   </label>
                 </div>
                 <div class="radio">
                   <label>
-                    <input type="radio" name="playstyle" id="playStyleActive" value="active" ng-model="playStyle">
+                    <input type="radio" name="playstyle" id="playStyleActive" value="active" ng-model="main.playStyle">
                     Active
                   </label>
                 </div>
               </div>
             </div>
-            <div class="row" ng-if="playStyle == 'hybrid'">
+            <div class="row" ng-if="main.playStyle == 'hybrid'">
               <div class="form-group">
                 Hybrid Idle/Active ratio
-                <rzslider rz-slider-model="slider.value" rz-slider-options="slider.options"></rzslider>
+                <rzslider rz-slider-model="main.slider.value" rz-slider-options="main.slider.options"></rzslider>
               </div>
             </div>
           </div>
@@ -89,11 +90,11 @@
     </div>
   </div>
 
-  <div class="row" ng-if="saveData">
-      <p>You have {{hsInStock | units:useScientificNotation}} HS in stock</p>
+  <div class="row" ng-if="main.saveData">
+      <p>You have {{main.hsInStock | units:useScientificNotation}} HS in stock.</p>
   </div>
 
-  <div class="row" ng-if="saveData">
+  <div class="row" ng-if="main.saveData">
       <table class="table table-striped table-condensed">
         <thead>
           <tr>
@@ -101,10 +102,11 @@
             <th>Current</th>
             <th>Goal</th>
             <th>Delta</th>
+            <th>Cost (HS)</th>
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="ancient in ancients | orderBy : 'name'">
+          <tr ng-repeat="ancient in main.ancients | orderBy : 'name'">
             <td>{{ancient.name}}</td>
             <td>{{ancient.level | units:useScientificNotation}}</td>
             <td>{{ancient.optimumLevel | units:useScientificNotation}}</td>
@@ -114,8 +116,15 @@
               data-clipboard-text="{{ancient.optimumLevel - ancient.level | numberToExport}}"
               uib-tooltip="Click to copy {{ancient.optimumLevel - ancient.level | numberToExport}} to clipboard"
               tooltip-placement="right">+{{ancient.optimumLevel - ancient.level | units:useScientificNotation}}</a></strong></td>
+            <td>{{main.getAncientUpgradeCost(ancient.name, ancient.level, ancient.optimumLevel) | units:useScientificNotation}}</td>
           </tr>
         </tbody>
+        <tfoot>
+          <tr>
+            <th colspan="4"><strong>Total cost</strong></th>
+            <th><strong>{{main.totalCost | units:useScientificNotation}}</strong></th>
+          </tr>
+        </tfoot>
       </table>
   </div>
 

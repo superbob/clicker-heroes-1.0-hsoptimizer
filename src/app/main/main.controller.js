@@ -1,10 +1,11 @@
 'use strict';
 
-//TOTO read "numberDisplayMode" and "transcendent"
-
+// TODO remove $scope when possible
 export class MainController {
-  constructor ($scope, $log, saveDecoder, formulas, saveDataAnalyzer, hsoptimizer) {
+  constructor ($scope, $log, saveDecoder, formulas, saveDataAnalyzer, hsoptimizer, mechanics) {
     'ngInject';
+
+    this.mechanics = mechanics;
 
     const resetForm = () => {
       $scope.saveData = null;
@@ -56,7 +57,7 @@ export class MainController {
 
     resetForm();
 
-    $scope.$watch('encodedSaveData', function(encodedData) {
+    $scope.$watch('encodedSaveData', encodedData => {
       resetForm();
 
       if (encodedData) {
@@ -79,7 +80,7 @@ export class MainController {
       }
     });
 
-    $scope.$watch('saveData', function(saveData) {
+    $scope.$watch('saveData', saveData => {
       if (saveData) {
         $scope.hsInStock = saveDataAnalyzer.getHsInStock(saveData);
         $scope.ascendZone = saveDataAnalyzer.getAscendZone(saveData);
@@ -91,7 +92,9 @@ export class MainController {
 
     // see http://stackoverflow.com/questions/21088845/can-i-debounce-or-throttle-a-watched-input-in-angularjs-using-lodash
     // TODO debounce (lodash)
-    $scope.$watchGroup(['saveData', 'ascendZone', 'playStyle', 'includeSoulsFromAscend', 'hybridRatio'], function([saveData, ascendZone, playStyle, includeSoulsFromAscend, hybridRatio]) {
+    $scope.$watchGroup(
+      ['saveData', 'ascendZone', 'playStyle', 'includeSoulsFromAscend', 'hybridRatio'],
+      ([saveData, ascendZone, playStyle, includeSoulsFromAscend, hybridRatio]) => {
       if (saveData) {
         let hs = $scope.hsInStock;
         if (includeSoulsFromAscend) {
@@ -105,7 +108,26 @@ export class MainController {
           saveDataAnalyzer.getAncientSoulsTotal(saveData),
           playStyle,
           hybridRatio);
+        const chorgorlothLevel = saveDataAnalyzer.getOutsiders($scope.saveData)
+          .filter(outsider => outsider.name === 'Chor\'gorloth')[0].level;
+        $scope.totalCost = this.totalCost(mechanics, $scope.ancients, chorgorlothLevel);
       }
     });
+
+    $scope.getAncientUpgradeCost = (name, currentLevel, newLevel) => {
+      const chorgorlothLevel = saveDataAnalyzer.getOutsiders($scope.saveData)
+        .filter(outsider => outsider.name === 'Chor\'gorloth')[0].level;
+      return mechanics.getAncientUpgradeCost(name, currentLevel, newLevel, chorgorlothLevel);
+    }
+
+    // Must return $scope to be able to use the 'dot notation' in the view
+    // http://stackoverflow.com/questions/25306582/angulars-controlleras-not-working-in-routeprovider/38197324#38197324
+    return $scope;
+  }
+
+  totalCost (mechanics, ancients, chorgorlothLevel) {
+    return ancients.reduce(
+      (total, ancient) => total + mechanics.getAncientUpgradeCost(ancient.name, ancient.level, ancient.optimumLevel, chorgorlothLevel),
+      0);
   }
 }
