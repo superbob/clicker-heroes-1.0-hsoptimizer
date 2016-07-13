@@ -90,11 +90,11 @@ describe('service saveDataAnalyzer', () => {
   describe('getOutsiders', () => {
     it('should return outsider list when given saveData', inject(saveDataAnalyzer => {
       expect(saveDataAnalyzer.getOutsiders(saveData)).toEqual([
-        {"name": undefined, "level": 15},
+        {"name": "Xyliqil", "level": 15},
         {"name": "Chor'gorloth", "level": 2},
         {"name": "Phandoryss", "level": 3},
-        {"name": undefined, "level": 0},
-        {"name": undefined, "level": 19}
+        {"name": "Borb", "level": 0},
+        {"name": "Ponyboy", "level": 19}
       ]);
     }));
   });

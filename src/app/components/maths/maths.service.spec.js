@@ -34,6 +34,41 @@ describe('service maths', () => {
     }));
   });
 
+  describe('linear10.unit', () => {
+    it('should return 1 when given 1', inject(maths => {
+      expect(maths.linear10.unit(1)).toBe(1);
+    }));
+
+    it('should return 1 when given 3', inject(maths => {
+      expect(maths.linear10.unit(3)).toBe(1);
+    }));
+
+    it('should return 1 when given 10', inject(maths => {
+      expect(maths.linear10.unit(10)).toBe(1);
+    }));
+
+    it('should return 2 when given 11', inject(maths => {
+      expect(maths.linear10.unit(11)).toBe(2);
+    }));
+  });
+
+  describe('linear10.sum', () => {
+    it('should return 1 when given 1', inject(maths => {
+      expect(maths.linear10.sum(1)).toBe(1);
+      expect(maths.sum(maths.linear10.unit)(1)).toBe(1);
+    }));
+
+    it('should return 1 when given 3', inject(maths => {
+      expect(maths.linear10.sum(3)).toBe(1);
+      expect(maths.sum(maths.linear10.unit)(3)).toBe(3);
+    }));
+
+    it('should return 1 when given 4', inject(maths => {
+      expect(maths.linear10.sum(4)).toBe(1);
+      expect(maths.sum(maths.linear10.unit)(4)).toBe(4);
+    }));
+  });
+
   describe('constant.unit', () => {
     it('should return 1 when given 1', inject(maths => {
       expect(maths.constant.unit(1)).toBe(1);

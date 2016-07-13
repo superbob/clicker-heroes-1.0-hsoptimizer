@@ -4,6 +4,9 @@ export default {
   'linear': {
     'unit': n => n,
     'sum': n => n * (n + 1) / 2},
+  'linear10': {
+    'unit': n => Math.ceil(n / 10),
+    'sum': n => Math.ceil(n * (n + 1) / 20)},
   'constant': {
     'unit': () => 1,
     'sum': n => n + 1},

@@ -67,4 +67,16 @@ describe('filter units', () => {
     expect(unitsFilter(1e68)).toBe('1.000e68');
   }));
 
+  it('should return -1 when given -1', inject(unitsFilter => {
+    expect(unitsFilter(-1)).toBe('-1');
+  }));
+
+  it('should return -100K when given -100 000', inject(unitsFilter => {
+    expect(unitsFilter(-100000)).toBe('-100K');
+  }));
+
+  it('should return -1.000e68 when given -1e68', inject(unitsFilter => {
+    expect(unitsFilter(-1e68)).toBe('-1.000e68');
+  }));
+
 });

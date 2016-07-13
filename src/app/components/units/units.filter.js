@@ -8,7 +8,7 @@ export default function units() {
 
   return function(input, scientificNotation = false) {
     if (scientificNotation) {
-      if (input <= 100000) {
+      if (Math.abs(input) <= 100000) {
         return formatWithoutSuffix(input);
       }
       return formatScientificNotation(input);
@@ -20,7 +20,7 @@ export default function units() {
         log10 = x => Math.log(x) / Math.log(10);
       }
 
-      const order = Math.max(Math.floor((log10(input) - 2) / 3), 0);
+      const order = Math.max(Math.floor((log10(Math.abs(input)) - 2) / 3), 0);
       if (order >= suffixes.length) {
         return formatScientificNotation(input);
       }

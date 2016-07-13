@@ -133,4 +133,46 @@ export default class HSOptimizer {
       .filter(ancient => ancient.optimumLevel !== undefined);
     return optimumAncients;
   }
+
+  computeOptimumAncientSouls(outsiderList, ancientSoulsTotal, playStyle) {
+    const currentXyliqilLevel = outsiderList.filter(outsider => outsider.name === 'Xyliqil')[0].level;
+    const currentChorgorlothLevel = outsiderList.filter(outsider => outsider.name === 'Chor\'gorloth')[0].level;
+    const currentPhandoryssLevel = outsiderList.filter(outsider => outsider.name === 'Phandoryss')[0].level;
+    const currentBorbLevel = outsiderList.filter(outsider => outsider.name === 'Borb')[0].level;
+    const currentPonyboyLevel = outsiderList.filter(outsider => outsider.name === 'Ponyboy')[0].level;
+
+    let remainingAncientSouls = ancientSoulsTotal;
+    let xyliqilTargetLevel;
+    if (playStyle === 'idle') {
+      xyliqilTargetLevel = this.formulas.computeIdleXyliqil(ancientSoulsTotal);
+    } else if (playStyle === 'active') {
+      xyliqilTargetLevel = this.formulas.computeActiveXyliqil(ancientSoulsTotal);
+    } else if (playStyle === 'hybrid') {
+      xyliqilTargetLevel = this.formulas.computeHybridXyliqil(ancientSoulsTotal);
+    }
+    remainingAncientSouls -= this.mechanics.getOutsiderUpgradeCost('Xyliqil', 0, xyliqilTargetLevel);
+    const phandoryssTargetLevel = this.formulas.computePhandoryss(remainingAncientSouls);
+    remainingAncientSouls -= this.mechanics.getOutsiderUpgradeCost('Phandoryss', 0, phandoryssTargetLevel);
+    const borbTargetLevelA = this.formulas.computeBorbA(remainingAncientSouls);
+    remainingAncientSouls -= this.mechanics.getOutsiderUpgradeCost('Borb', 0, borbTargetLevelA);
+    const ponyTargetLevelB = this.formulas.computePonyboy(remainingAncientSouls);
+    remainingAncientSouls -= this.mechanics.getOutsiderUpgradeCost('Ponyboy', 0, ponyTargetLevelB);
+    const chorTargetLevelC = this.formulas.computeChorgorloth(remainingAncientSouls);
+    remainingAncientSouls -= this.mechanics.getOutsiderUpgradeCost('Chor\'gorloth', 0, chorTargetLevelC);
+    const borbTargetLevelD = this.formulas.computeBorbD(borbTargetLevelA, remainingAncientSouls);
+    if (borbTargetLevelA < borbTargetLevelD) {
+      remainingAncientSouls -= this.mechanics.getOutsiderUpgradeCost('Borb', borbTargetLevelA, borbTargetLevelD);
+    }
+    const borbTargetLevelE = this.formulas.computeBorbE(remainingAncientSouls);
+    const intermediateBorbLevel = Math.max(borbTargetLevelA, borbTargetLevelD);
+    remainingAncientSouls -= this.mechanics.getOutsiderUpgradeCost('Borb', intermediateBorbLevel, intermediateBorbLevel + borbTargetLevelE);
+    const ponyTargetLevelE = remainingAncientSouls;
+    return [
+      {name: 'Xyliqil', level: currentXyliqilLevel, optimumLevel: xyliqilTargetLevel},
+      {name: 'Chor\'gorloth', level: currentChorgorlothLevel, optimumLevel: chorTargetLevelC},
+      {name: 'Phandoryss', level: currentPhandoryssLevel, optimumLevel: phandoryssTargetLevel},
+      {name: 'Borb', level: currentBorbLevel, optimumLevel: intermediateBorbLevel + borbTargetLevelE},
+      {name: 'Ponyboy', level: currentPonyboyLevel, optimumLevel: ponyTargetLevelB + ponyTargetLevelE}
+    ];
+  }
 }

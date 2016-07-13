@@ -37,9 +37,14 @@ export default class Mechanics {
     };
 
     this.outsiders = {
-      "Chor'gorloth": {id: "2"},
-      "Phandoryss":   {id: "3"}
+      "Xyliqil":      {id: "1", cost: maths.constant},
+      "Chor'gorloth": {id: "2", cost: maths.linear10},
+      "Phandoryss":   {id: "3", cost: maths.linear},
+      "Borb":         {id: "4", cost: maths.constant},
+      "Ponyboy":      {id: "5", cost: maths.constant}
     };
+
+    this.sum = maths.sum;
 
   }
 
@@ -51,14 +56,6 @@ export default class Mechanics {
     for (let ancient in this.ancients) {
       if (this.ancients[ancient].id === id) {
         return ancient;
-      }
-    }
-  }
-
-  getOutsiderNameById(id) {
-    for (let outsider in this.outsiders) {
-      if (this.outsiders[outsider].id === id) {
-        return outsider;
       }
     }
   }
@@ -77,5 +74,18 @@ export default class Mechanics {
       (this.getAncientCostSum(name)(newLevel)
         - this.getAncientCostSum(name)(currentLevel))
       * this.getAncientCostMultiplier(chorgorlothLevel));
+  }
+
+  getOutsiderNameById(id) {
+    for (let outsider in this.outsiders) {
+      if (this.outsiders[outsider].id === id) {
+        return outsider;
+      }
+    }
+  }
+
+  getOutsiderUpgradeCost(name, currentLevel, newLevel) {
+    const sum = this.sum(this.outsiders[name].cost.unit);
+    return sum(newLevel) - sum(currentLevel);
   }
 }

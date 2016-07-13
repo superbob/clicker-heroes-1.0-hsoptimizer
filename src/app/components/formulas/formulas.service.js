@@ -73,4 +73,70 @@ export default class Formulas {
     const phandoryssBonus = 0.05 * phandoryssLevel;
     return (baseTp + phandoryssBonus) / 100;
   }
+
+  // Outsider formulas from: https://www.reddit.com/r/ClickerHeroes/comments/4rrbpi/math_outsiders_rule_of_thumb/
+  computeActiveXyliqil() {
+    return 0;
+  }
+
+  computeHybridXyliqil(ancientSoulsTotal) {
+    return Math.min(Math.floor(ancientSoulsTotal / 20), 5);
+  }
+
+  computeIdleXyliqil(ancientSoulsTotal) {
+    return Math.min(Math.floor(ancientSoulsTotal / 5), 10);
+  }
+
+  /*
+  Phandoryss-Level	1	2	3	4	5	6	7	8	9	10
+AS-Minimum	3	10	21	36	54	60	67	75	84	94
+Phandoryss-Level	11	12	13	14	15	16	17	18	19
+AS-Minimum	104	117	129	143	158	174	190	208	228
+  */
+  computePhandoryss(remainingAncientSouls) {
+    const table = [
+      {level: 1, as: 3},
+      {level: 2, as: 10},
+      {level: 3, as: 21},
+      {level: 4, as: 36},
+      {level: 5, as: 54},
+      {level: 6, as: 60},
+      {level: 7, as: 67},
+      {level: 8, as: 75},
+      {level: 9, as: 84},
+      {level: 10, as: 94},
+      {level: 11, as: 104},
+      {level: 12, as: 117},
+      {level: 14, as: 129},
+      {level: 13, as: 143},
+      {level: 15, as: 158},
+      {level: 16, as: 174},
+      {level: 17, as: 190},
+      {level: 18, as: 208},
+      {level: 19, as: 228}
+    ];
+
+    return table.filter(e => e.as <= remainingAncientSouls).pop().level;
+  }
+
+  computeBorbA(remainingAncientSouls) {
+    return Math.ceil(remainingAncientSouls / 10);
+  }
+
+  computePonyboy(remainingAncientSouls) {
+    return Math.min(remainingAncientSouls, 19);
+  }
+
+  computeChorgorloth(remainingAncientSouls) {
+    return Math.min(remainingAncientSouls, 10);
+  }
+
+  computeBorbD(currentLevel, remainingAncientSouls) {
+    return Math.min(Math.max(10 - currentLevel, 0), remainingAncientSouls);
+  }
+
+  computeBorbE(remainingAncientSouls) {
+    return Math.floor(remainingAncientSouls / 2);
+  }
+
 }

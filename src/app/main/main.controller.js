@@ -15,6 +15,7 @@ export class MainController {
       $scope.playStyle = "idle";
       $scope.hsFromAscend = 0;
       $scope.includeSoulsFromAscend = false;
+      $scope.asTotal = 0;
       $scope.error = undefined;
 
       angular.element('#saveData').parent().removeClass('has-error');
@@ -87,6 +88,7 @@ export class MainController {
         $scope.playStyle = saveDataAnalyzer.detectPlayStyle(saveData);
         $scope.hsFromAscend = saveDataAnalyzer.getHsUponAscend(saveData);
         $scope.useScientificNotation = saveDataAnalyzer.getNumberDisplayMode(saveData);
+        $scope.asTotal = saveDataAnalyzer.getAncientSoulsTotal(saveData);
       }
     });
 
@@ -110,7 +112,14 @@ export class MainController {
           hybridRatio);
         const chorgorlothLevel = saveDataAnalyzer.getOutsiders($scope.saveData)
           .filter(outsider => outsider.name === 'Chor\'gorloth')[0].level;
+
         $scope.totalCost = this.totalCost(mechanics, $scope.ancients, chorgorlothLevel);
+
+        $scope.outsiders = hsoptimizer.computeOptimumAncientSouls(
+          saveDataAnalyzer.getOutsiders(saveData),
+          saveDataAnalyzer.getAncientSoulsTotal(saveData),
+          playStyle
+        );
       }
     });
 
@@ -118,7 +127,11 @@ export class MainController {
       const chorgorlothLevel = saveDataAnalyzer.getOutsiders($scope.saveData)
         .filter(outsider => outsider.name === 'Chor\'gorloth')[0].level;
       return mechanics.getAncientUpgradeCost(name, currentLevel, newLevel, chorgorlothLevel);
-    }
+    };
+
+    $scope.getOutsiderUpgradeCost = (name, currentLevel, newLevel) => {
+      return mechanics.getOutsiderUpgradeCost(name, currentLevel, newLevel);
+    };
 
     // Must return $scope to be able to use the 'dot notation' in the view
     // http://stackoverflow.com/questions/25306582/angulars-controlleras-not-working-in-routeprovider/38197324#38197324

@@ -128,4 +128,199 @@ describe('service formulas', () => {
       expect(formulas.computeTranscendencePower(30, 10)).toBeApproximatly(0.016467);
     }));
   });
+
+  describe('computeActiveXyliqil formula', () => {
+    it('should return 0 when given 1 AS', inject(formulas => {
+      expect(formulas.computeActiveXyliqil(1)).toBe(0);
+    }));
+
+    it('should return 0 when given 10 AS', inject(formulas => {
+      expect(formulas.computeActiveXyliqil(10)).toBe(0);
+    }));
+  });
+
+  describe('computeHybridXyliqil formula', () => {
+    it('should return 0 when given 1 AS', inject(formulas => {
+      expect(formulas.computeHybridXyliqil(1)).toBe(0);
+    }));
+
+    it('should return 1 when given 20 AS', inject(formulas => {
+      expect(formulas.computeHybridXyliqil(20)).toBe(1);
+    }));
+
+    it('should return 1 when given 25 AS', inject(formulas => {
+      expect(formulas.computeHybridXyliqil(25)).toBe(1);
+    }));
+
+    it('should return 5 when given 100 AS', inject(formulas => {
+      expect(formulas.computeHybridXyliqil(100)).toBe(5);
+    }));
+
+    it('should return 5 when given 120 AS', inject(formulas => {
+      expect(formulas.computeHybridXyliqil(120)).toBe(5);
+    }));
+  });
+
+  describe('computeIdleXyliqil formula', () => {
+    it('should return 0 when given 1 AS', inject(formulas => {
+      expect(formulas.computeIdleXyliqil(1)).toBe(0);
+    }));
+
+    it('should return 1 when given 5 AS', inject(formulas => {
+      expect(formulas.computeIdleXyliqil(5)).toBe(1);
+    }));
+
+    it('should return 1 when given 9 AS', inject(formulas => {
+      expect(formulas.computeIdleXyliqil(9)).toBe(1);
+    }));
+
+    it('should return 10 when given 50 AS', inject(formulas => {
+      expect(formulas.computeIdleXyliqil(50)).toBe(10);
+    }));
+
+    it('should return 10 when given 60 AS', inject(formulas => {
+      expect(formulas.computeIdleXyliqil(60)).toBe(10);
+    }));
+  });
+
+  describe('computePhandoryss formula', () => {
+    it('should return 1 when given 4 AS', inject(formulas => {
+      expect(formulas.computePhandoryss(4)).toBe(1);
+    }));
+
+    it('should return 1 when given 5 AS', inject(formulas => {
+      expect(formulas.computePhandoryss(5)).toBe(1);
+    }));
+
+    it('should return 2 when given 11 AS', inject(formulas => {
+      expect(formulas.computePhandoryss(11)).toBe(2);
+    }));
+
+    it('should return 4 when given 50 AS', inject(formulas => {
+      expect(formulas.computePhandoryss(50)).toBe(4);
+    }));
+
+    it('should return 6 when given 60 AS', inject(formulas => {
+      expect(formulas.computePhandoryss(60)).toBe(6);
+    }));
+
+    it('should return 19 when given 230 AS', inject(formulas => {
+      expect(formulas.computePhandoryss(230)).toBe(19);
+    }));
+  });
+
+  describe('computeBorbA formula', () => {
+    it('should return 1 when given 4 AS', inject(formulas => {
+      expect(formulas.computeBorbA(4)).toBe(1);
+    }));
+
+    it('should return 1 when given 5 AS', inject(formulas => {
+      expect(formulas.computeBorbA(5)).toBe(1);
+    }));
+
+    it('should return 2 when given 11 AS', inject(formulas => {
+      expect(formulas.computeBorbA(11)).toBe(2);
+    }));
+
+    it('should return 5 when given 50 AS', inject(formulas => {
+      expect(formulas.computeBorbA(50)).toBe(5);
+    }));
+
+    it('should return 6 when given 60 AS', inject(formulas => {
+      expect(formulas.computeBorbA(60)).toBe(6);
+    }));
+
+    it('should return 23 when given 230 AS', inject(formulas => {
+      expect(formulas.computeBorbA(230)).toBe(23);
+    }));
+  });
+
+  describe('computePonyboy formula', () => {
+    it('should return 1 when given 1 AS', inject(formulas => {
+      expect(formulas.computePonyboy(1)).toBe(1);
+    }));
+
+    it('should return 5 when given 5 AS', inject(formulas => {
+      expect(formulas.computePonyboy(5)).toBe(5);
+    }));
+
+    it('should return 11 when given 11 AS', inject(formulas => {
+      expect(formulas.computePonyboy(11)).toBe(11);
+    }));
+
+    it('should return 19 when given 50 AS', inject(formulas => {
+      expect(formulas.computePonyboy(50)).toBe(19);
+    }));
+
+    it('should return 19 when given 60 AS', inject(formulas => {
+      expect(formulas.computePonyboy(60)).toBe(19);
+    }));
+
+    it('should return 19 when given 230 AS', inject(formulas => {
+      expect(formulas.computePonyboy(230)).toBe(19);
+    }));
+  });
+
+  describe('computeChorgorloth formula', () => {
+    it('should return 1 when given 1 AS', inject(formulas => {
+      expect(formulas.computeChorgorloth(1)).toBe(1);
+    }));
+
+    it('should return 5 when given 5 AS', inject(formulas => {
+      expect(formulas.computeChorgorloth(5)).toBe(5);
+    }));
+
+    it('should return 10 when given 11 AS', inject(formulas => {
+      expect(formulas.computeChorgorloth(11)).toBe(10);
+    }));
+
+    it('should return 10 when given 50 AS', inject(formulas => {
+      expect(formulas.computeChorgorloth(50)).toBe(10);
+    }));
+
+    it('should return 10 when given 60 AS', inject(formulas => {
+      expect(formulas.computeChorgorloth(60)).toBe(10);
+    }));
+
+    it('should return 10 when given 230 AS', inject(formulas => {
+      expect(formulas.computeChorgorloth(230)).toBe(10);
+    }));
+  });
+
+  describe('computeBorbD formula', () => {
+    it('should return 4 when given 4, 4 AS', inject(formulas => {
+      expect(formulas.computeBorbD(4, 4)).toBe(4);
+    }));
+
+    it('should return 2 when given 8, 5 AS', inject(formulas => {
+      expect(formulas.computeBorbD(8, 5)).toBe(2);
+    }));
+
+    it('should return 0 when given 11, 3 AS', inject(formulas => {
+      expect(formulas.computeBorbD(11, 3)).toBe(0);
+    }));
+
+    it('should return 7 when given 3, 10 AS', inject(formulas => {
+      expect(formulas.computeBorbD(3, 10)).toBe(7);
+    }));
+  });
+
+  describe('computeBorbE formula', () => {
+    it('should return 2 when given 4 AS', inject(formulas => {
+      expect(formulas.computeBorbE(4)).toBe(2);
+    }));
+
+    it('should return 2 when given 5 AS', inject(formulas => {
+      expect(formulas.computeBorbE(5)).toBe(2);
+    }));
+
+    it('should return 5 when given 11 AS', inject(formulas => {
+      expect(formulas.computeBorbE(11)).toBe(5);
+    }));
+
+    it('should return 5 when given 10 AS', inject(formulas => {
+      expect(formulas.computeBorbE(10)).toBe(5);
+    }));
+  });
+
 });

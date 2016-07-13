@@ -251,4 +251,82 @@ describe('service mechanics', () => {
     }));
   });
 
+  describe('getOutsiderUpgradeCost', () => {
+    it('should return 1 when given Xyliqil, 0 to 1', inject(mechanics => {
+      expect(mechanics.getOutsiderUpgradeCost('Xyliqil', 0, 1)).toBe(1);
+    }));
+
+    it('should return 1 when given Xyliqil, 1 to 2', inject(mechanics => {
+      expect(mechanics.getOutsiderUpgradeCost('Xyliqil', 1, 2)).toBe(1);
+    }));
+
+    it('should return 1 when given Xyliqil, 2 to 3', inject(mechanics => {
+      expect(mechanics.getOutsiderUpgradeCost('Xyliqil', 2, 3)).toBe(1);
+    }));
+
+    it('should return 3 when given Xyliqil, 0 to 3', inject(mechanics => {
+      expect(mechanics.getOutsiderUpgradeCost('Xyliqil', 0, 3)).toBe(3);
+    }));
+
+    it('should return 1 when given Chor\'gorloth, 0 to 1', inject(mechanics => {
+      expect(mechanics.getOutsiderUpgradeCost('Chor\'gorloth', 0, 1)).toBe(1);
+    }));
+
+    it('should return 1 when given Chor\'gorloth, 0 to 10', inject(mechanics => {
+      expect(mechanics.getOutsiderUpgradeCost('Chor\'gorloth', 0, 10)).toBe(10);
+    }));
+
+    it('should return 12 when given Chor\'gorloth, 2 to 12', inject(mechanics => {
+      expect(mechanics.getOutsiderUpgradeCost('Chor\'gorloth', 2, 12)).toBe(12);
+    }));
+
+    it('should return 1 when given Phandoryss, 0 to 1', inject(mechanics => {
+      expect(mechanics.getOutsiderUpgradeCost('Phandoryss', 0, 1)).toBe(1);
+    }));
+
+    it('should return 2 when given Phandoryss, 1 to 2', inject(mechanics => {
+      expect(mechanics.getOutsiderUpgradeCost('Phandoryss', 1, 2)).toBe(2);
+    }));
+
+    it('should return 3 when given Phandoryss, 2 to 3', inject(mechanics => {
+      expect(mechanics.getOutsiderUpgradeCost('Phandoryss', 2, 3)).toBe(3);
+    }));
+
+    it('should return 6 when given Phandoryss, 0 to 3', inject(mechanics => {
+      expect(mechanics.getOutsiderUpgradeCost('Phandoryss', 0, 3)).toBe(6);
+    }));
+
+    it('should return 1 when given Borb, 0 to 1', inject(mechanics => {
+      expect(mechanics.getOutsiderUpgradeCost('Borb', 0, 1)).toBe(1);
+    }));
+
+    it('should return 1 when given Borb, 1 to 2', inject(mechanics => {
+      expect(mechanics.getOutsiderUpgradeCost('Borb', 1, 2)).toBe(1);
+    }));
+
+    it('should return 1 when given Borb, 2 to 3', inject(mechanics => {
+      expect(mechanics.getOutsiderUpgradeCost('Borb', 2, 3)).toBe(1);
+    }));
+
+    it('should return 3 when given Borb, 0 to 3', inject(mechanics => {
+      expect(mechanics.getOutsiderUpgradeCost('Borb', 0, 3)).toBe(3);
+    }));
+
+    it('should return 1 when given Ponyboy, 0 to 1', inject(mechanics => {
+      expect(mechanics.getOutsiderUpgradeCost('Ponyboy', 0, 1)).toBe(1);
+    }));
+
+    it('should return 1 when given Ponyboy, 1 to 2', inject(mechanics => {
+      expect(mechanics.getOutsiderUpgradeCost('Ponyboy', 1, 2)).toBe(1);
+    }));
+
+    it('should return 1 when given Ponyboy, 2 to 3', inject(mechanics => {
+      expect(mechanics.getOutsiderUpgradeCost('Ponyboy', 2, 3)).toBe(1);
+    }));
+
+    it('should return 3 when given Ponyboy, 0 to 3', inject(mechanics => {
+      expect(mechanics.getOutsiderUpgradeCost('Ponyboy', 0, 3)).toBe(3);
+    }));
+  });
+
 });

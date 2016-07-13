@@ -37,11 +37,11 @@ describe('service hsoptimizer', () => {
         {"name": "Revolc", "level": 5}
       ],
       [
-        {"name": undefined, "level": 15},
+        {"name": "Xyliqil", "level": 15},
         {"name": "Chor'gorloth", "level": 2},
         {"name": "Phandoryss", "level": 3},
-        {"name": undefined, "level": 0},
-        {"name": undefined, "level": 19}
+        {"name": "Borb", "level": 0},
+        {"name": "Ponyboy", "level": 19}
       ],
       1089984,
       1559,
@@ -98,11 +98,11 @@ describe('service hsoptimizer', () => {
         {"name": "Revolc", "level": 60}
       ],
       [
-        {"name": undefined, "level": 3},
+        {"name": "Xyliqil", "level": 3},
         {"name": "Chor'gorloth", "level": 10},
         {"name": "Phandoryss", "level": 11},
-        {"name": undefined, "level": 13},
-        {"name": undefined, "level": 19}
+        {"name": "Borb", "level": 13},
+        {"name": "Ponyboy", "level": 19}
       ],
       1.192347317103044e+23,
       6849,
@@ -144,11 +144,11 @@ describe('service hsoptimizer', () => {
         {"name": "Siyalatas", "level": 24}
       ],
       [
-        {"name": undefined, "level": 0},
+        {"name": "Xyliqil", "level": 0},
         {"name": "Chor'gorloth", "level": 15},
         {"name": "Phandoryss", "level": 3},
-        {"name": undefined, "level": 0},
-        {"name": undefined, "level": 0}
+        {"name": "Borb", "level": 0},
+        {"name": "Ponyboy", "level": 0}
       ],
       392,
       200,
@@ -167,4 +167,41 @@ describe('service hsoptimizer', () => {
       {"name": "Siyalatas", "level": 24, "optimumLevel": 30, "delta": 6}
     ]);
   }));
+
+  describe('computeOptimumAncientSouls', () => {
+    it('should give correct recommendations for 59 AS', inject(hsoptimizer => {
+      expect(hsoptimizer.computeOptimumAncientSouls([
+        {"name": "Xyliqil", "level": 0},
+        {"name": "Chor'gorloth", "level": 0},
+        {"name": "Phandoryss", "level": 0},
+        {"name": "Borb", "level": 0},
+        {"name": "Ponyboy", "level": 0}
+      ], 59, 'idle')).toEqual([
+        {"name": "Xyliqil", "level": 0, "optimumLevel": 10},
+        {"name": "Chor'gorloth", "level": 0, "optimumLevel": 10},
+        {"name": "Phandoryss", "level": 0, "optimumLevel": 4},
+        {"name": "Borb", "level": 0, "optimumLevel": 8},
+        {"name": "Ponyboy", "level": 0, "optimumLevel": 21}
+      ]);
+    }));
+  });
+
+  describe('computeOptimumAncientSouls', () => {
+    it('should give correct recommendations for 42 AS', inject(hsoptimizer => {
+      expect(hsoptimizer.computeOptimumAncientSouls([
+        {"name": "Xyliqil", "level": 0},
+        {"name": "Chor'gorloth", "level": 0},
+        {"name": "Phandoryss", "level": 0},
+        {"name": "Borb", "level": 0},
+        {"name": "Ponyboy", "level": 0}
+      ], 42, 'hybrid')).toEqual([
+        {"name": "Xyliqil", "level": 0, "optimumLevel": 2},
+        {"name": "Chor'gorloth", "level": 0, "optimumLevel": 8},
+        {"name": "Phandoryss", "level": 0, "optimumLevel": 4},
+        {"name": "Borb", "level": 0, "optimumLevel": 3},
+        {"name": "Ponyboy", "level": 0, "optimumLevel": 19}
+      ]);
+    }));
+  });
+
 });
