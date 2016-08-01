@@ -177,11 +177,11 @@ describe('service hsoptimizer', () => {
         {"name": "Borb", "level": 0},
         {"name": "Ponyboy", "level": 0}
       ], 59, 'idle')).toEqual([
-        {"name": "Xyliqil", "level": 0, "optimumLevel": 10},
-        {"name": "Chor'gorloth", "level": 0, "optimumLevel": 10},
-        {"name": "Phandoryss", "level": 0, "optimumLevel": 4},
-        {"name": "Borb", "level": 0, "optimumLevel": 8},
-        {"name": "Ponyboy", "level": 0, "optimumLevel": 21}
+        {"name": "Xyliqil",      "order": 1, "level": 0, "optimumLevel": 10},
+        {"name": "Chor'gorloth", "order": 2, "level": 0, "optimumLevel": 10},
+        {"name": "Phandoryss",   "order": 3, "level": 0, "optimumLevel": 4},
+        {"name": "Borb",         "order": 4, "level": 0, "optimumLevel": 8},
+        {"name": "Ponyboy",      "order": 5, "level": 0, "optimumLevel": 21}
       ]);
     }));
   });
@@ -195,11 +195,11 @@ describe('service hsoptimizer', () => {
         {"name": "Borb", "level": 0},
         {"name": "Ponyboy", "level": 0}
       ], 42, 'hybrid')).toEqual([
-        {"name": "Xyliqil", "level": 0, "optimumLevel": 2},
-        {"name": "Chor'gorloth", "level": 0, "optimumLevel": 8},
-        {"name": "Phandoryss", "level": 0, "optimumLevel": 4},
-        {"name": "Borb", "level": 0, "optimumLevel": 3},
-        {"name": "Ponyboy", "level": 0, "optimumLevel": 19}
+        {"name": "Xyliqil",      "order": 1, "level": 0, "optimumLevel": 2},
+        {"name": "Chor'gorloth", "order": 2, "level": 0, "optimumLevel": 8},
+        {"name": "Phandoryss",   "order": 3, "level": 0, "optimumLevel": 4},
+        {"name": "Borb",         "order": 4, "level": 0, "optimumLevel": 3},
+        {"name": "Ponyboy",      "order": 5, "level": 0, "optimumLevel": 19}
       ]);
     }));
   });

@@ -141,7 +141,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="outsider in main.outsiders | orderBy : 'name'">
+          <tr ng-repeat="outsider in main.outsiders | orderBy : 'order'">
             <td>{{outsider.name}}</td>
             <td>{{outsider.optimumLevel | units:useScientificNotation}}</td>
             <td>{{main.getOutsiderUpgradeCost(outsider.name, 0, outsider.optimumLevel) | units:useScientificNotation}}</td>
@@ -149,7 +149,7 @@
         </tbody>
       </table>
 
-      <p class="text-warning">Warning: These suggestions don't consider your existing levels of outsiders. It is consider total AS, optimum levels and costs from zero.</p>
+      <p class="text-warning">Warning: These suggestions don't consider your existing levels of outsiders. It consider total AS, optimum levels and costs from zero.</p>
     </div>
   </div>
 

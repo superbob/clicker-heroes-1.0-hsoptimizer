@@ -168,11 +168,11 @@ export default class HSOptimizer {
     remainingAncientSouls -= this.mechanics.getOutsiderUpgradeCost('Borb', intermediateBorbLevel, intermediateBorbLevel + borbTargetLevelE);
     const ponyTargetLevelE = remainingAncientSouls;
     return [
-      {name: 'Xyliqil', level: currentXyliqilLevel, optimumLevel: xyliqilTargetLevel},
-      {name: 'Chor\'gorloth', level: currentChorgorlothLevel, optimumLevel: chorTargetLevelC},
-      {name: 'Phandoryss', level: currentPhandoryssLevel, optimumLevel: phandoryssTargetLevel},
-      {name: 'Borb', level: currentBorbLevel, optimumLevel: intermediateBorbLevel + borbTargetLevelE},
-      {name: 'Ponyboy', level: currentPonyboyLevel, optimumLevel: ponyTargetLevelB + ponyTargetLevelE}
+      {name: 'Xyliqil',       order: 1, level: currentXyliqilLevel,     optimumLevel: xyliqilTargetLevel},
+      {name: 'Chor\'gorloth', order: 2, level: currentChorgorlothLevel, optimumLevel: chorTargetLevelC},
+      {name: 'Phandoryss',    order: 3, level: currentPhandoryssLevel,  optimumLevel: phandoryssTargetLevel},
+      {name: 'Borb',          order: 4, level: currentBorbLevel,        optimumLevel: intermediateBorbLevel + borbTargetLevelE},
+      {name: 'Ponyboy',       order: 5, level: currentPonyboyLevel,     optimumLevel: ponyTargetLevelB + ponyTargetLevelE}
     ];
   }
 }
