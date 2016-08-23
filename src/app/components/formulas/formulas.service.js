@@ -42,7 +42,7 @@ export default class Formulas {
   }
 
   computeKumawakamaruLevel(baseLevel, oldKumawakamaruLevel, alpha) {
-    return 2.88 * Math.log(baseLevel) - 1.44 * Math.log(alpha) - 1.44 * Math.log(0.25 + Math.exp(-0.001 * oldKumawakamaruLevel)) - 10.42;
+    return 2.844 * Math.log(baseLevel) - 1.422 * Math.log(alpha) - 1.422 * Math.log(0.25 + Math.exp(-0.01 * oldKumawakamaruLevel)) - 7.014;
   }
 
   // Formulas taken from https://kepow.org/clickerheroes

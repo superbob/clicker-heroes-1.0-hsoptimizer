@@ -49,23 +49,23 @@ describe('service hsoptimizer', () => {
       'hybrid',
       0.5);
     expect(recommendations).toEqual([
-      {"name": "Solomon", "level": 548, "optimumLevel": 574, "delta": 26},
-      {"name": "Libertas", "level": 881, "optimumLevel": 930, "delta": 49},
-      {"name": "Siyalatas", "level": 950, "optimumLevel": 1004, "delta": 54},
-      {"name": "Mammon", "level": 881, "optimumLevel": 930, "delta": 49},
-      {"name": "Mimzee", "level": 881, "optimumLevel": 930, "delta": 49},
+      {"name": "Solomon", "level": 548, "optimumLevel": 572, "delta": 24},
+      {"name": "Libertas", "level": 881, "optimumLevel": 926, "delta": 45},
+      {"name": "Siyalatas", "level": 950, "optimumLevel": 1000, "delta": 50},
+      {"name": "Mammon", "level": 881, "optimumLevel": 926, "delta": 45},
+      {"name": "Mimzee", "level": 881, "optimumLevel": 926, "delta": 45},
       {"name": "Dogcog", "level": 12, "optimumLevel": 13, "delta": 1},
       {"name": "Fortuna", "level": 13, "optimumLevel": 13, "delta": 0},
       {"name": "Atman", "level": 16, "optimumLevel": 17, "delta": 1},
       {"name": "Dora", "level": 14, "optimumLevel": 15, "delta": 1},
-      {"name": "Bhaal", "level": 150, "optimumLevel": 502, "delta": 352},
-      {"name": "Morgulis", "level": 902486, "optimumLevel": 1008016, "delta": 105530},
+      {"name": "Bhaal", "level": 150, "optimumLevel": 500, "delta": 350},
+      {"name": "Morgulis", "level": 902486, "optimumLevel": 1000000, "delta": 97514},
       {"name": "Chronos", "level": 13, "optimumLevel": 13, "delta": 0},
       {"name": "Bubos", "level": 12, "optimumLevel": 13, "delta": 1},
-      {"name": "Fragsworth", "level": 150, "optimumLevel": 502, "delta": 352},
-      {"name": "Kumawakamaru", "level": 11, "optimumLevel": 12, "delta": 1},
-      {"name": "Argaiv", "level": 950, "optimumLevel": 1004, "delta": 54},
-      {"name": "Juggernaut", "level": 50, "optimumLevel": 145, "delta": 95}
+      {"name": "Fragsworth", "level": 150, "optimumLevel": 500, "delta": 350},
+      {"name": "Kumawakamaru", "level": 11, "optimumLevel": 15, "delta": 4},
+      {"name": "Argaiv", "level": 950, "optimumLevel": 1000, "delta": 50},
+      {"name": "Juggernaut", "level": 50, "optimumLevel": 144, "delta": 94}
     ]);
   }));
 
@@ -110,23 +110,23 @@ describe('service hsoptimizer', () => {
       'hybrid',
       0.5);
     expect(recommendations).toEqual([
-      {"name": "Solomon", "level": 720030000, "optimumLevel": 2165667541, "delta": 1445637541},
-      {"name": "Libertas", "level": 43009999999, "optimumLevel": 169056568496, "delta": 126046568497},
-      {"name": "Siyalatas", "level": 47000009999, "optimumLevel": 182566488657, "delta": 135566478658},
-      {"name": "Mammon", "level": 43000000001, "optimumLevel": 169056568496, "delta": 126056568495},
-      {"name": "Mimzee", "level": 43000000001, "optimumLevel": 169056568496, "delta": 126056568495},
+      {"name": "Solomon", "level": 720030000, "optimumLevel": 2157058093, "delta": 1437028093},
+      {"name": "Libertas", "level": 43009999999, "optimumLevel": 168216896893, "delta": 125206896894},
+      {"name": "Siyalatas", "level": 47000009999, "optimumLevel": 181659715867, "delta": 134659705868},
+      {"name": "Mammon", "level": 43000000001, "optimumLevel": 168216896893, "delta": 125216896892},
+      {"name": "Mimzee", "level": 43000000001, "optimumLevel": 168216896893, "delta": 125216896892},
       {"name": "Dogcog", "level": 63, "optimumLevel": 67, "delta": 4},
       {"name": "Fortuna", "level": 63, "optimumLevel": 67, "delta": 4},
       {"name": "Atman", "level": 66, "optimumLevel": 70, "delta": 4},
       {"name": "Dora", "level": 64, "optimumLevel": 68, "delta": 4},
-      {"name": "Bhaal", "level": 15000000001, "optimumLevel": 91283244329, "delta": 76283244328},
-      {"name": "Morgulis", "level": 2.2021e+21, "optimumLevel": 3.333052278054651e+22, "delta": 3.112842278054651e+22},
+      {"name": "Bhaal", "level": 15000000001, "optimumLevel": 90829857934, "delta": 75829857933},
+      {"name": "Morgulis", "level": 2.2021e+21, "optimumLevel": 3.300025236887917e+22, "delta": 3.079815236887917e+22},
       {"name": "Chronos", "level": 58, "optimumLevel": 65, "delta": 7},
       {"name": "Bubos", "level": 62, "optimumLevel": 66, "delta": 4},
-      {"name": "Fragsworth", "level": 15000000001, "optimumLevel": 91283244329, "delta": 76283244328},
-      {"name": "Kumawakamaru", "level": 66, "optimumLevel": 67, "delta": 1},
-      {"name": "Argaiv", "level": 47000010001, "optimumLevel": 182566488657, "delta": 135566478656},
-      {"name": "Juggernaut", "level": 120000001, "optimumLevel": 586560554, "delta": 466560553}
+      {"name": "Fragsworth", "level": 15000000001, "optimumLevel": 90829857934, "delta": 75829857933},
+      {"name": "Kumawakamaru", "level": 66, "optimumLevel": 70, "delta": 4},
+      {"name": "Argaiv", "level": 47000010001, "optimumLevel": 181659715867, "delta": 134659705866},
+      {"name": "Juggernaut", "level": 120000001, "optimumLevel": 584228727, "delta": 464228726}
     ]);
   }));
 
@@ -159,12 +159,12 @@ describe('service hsoptimizer', () => {
       {"name": "Atman", "level": 6, "optimumLevel": 7, "delta": 1},
       {"name": "Dogcog", "level": 2, "optimumLevel": 2, "delta": 0},
       {"name": "Dora", "level": 5, "optimumLevel": 6, "delta": 1},
-      {"name": "Fortuna", "level": 3, "optimumLevel": 4, "delta": 1},
-      {"name": "Kumawakamaru", "level": 1, "optimumLevel": 2, "delta": 1},
-      {"name": "Libertas", "level": 22, "optimumLevel": 28, "delta": 6},
-      {"name": "Mammon", "level": 22, "optimumLevel": 28, "delta": 6},
-      {"name": "Mimzee", "level": 22, "optimumLevel": 28, "delta": 6},
-      {"name": "Siyalatas", "level": 24, "optimumLevel": 30, "delta": 6}
+      {"name": "Fortuna", "level": 3, "optimumLevel": 3, "delta": 0},
+      {"name": "Kumawakamaru", "level": 1, "optimumLevel": 5, "delta": 4},
+      {"name": "Libertas", "level": 22, "optimumLevel": 27, "delta": 5},
+      {"name": "Mammon", "level": 22, "optimumLevel": 27, "delta": 5},
+      {"name": "Mimzee", "level": 22, "optimumLevel": 27, "delta": 5},
+      {"name": "Siyalatas", "level": 24, "optimumLevel": 29, "delta": 5}
     ]);
   }));
 

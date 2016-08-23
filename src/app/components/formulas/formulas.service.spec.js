@@ -94,8 +94,8 @@ describe('service formulas', () => {
   });
 
   describe('computeKumawakamaruLevel formula', () => {
-    it('should return 3 when given (100, 1, 0.8)', inject(formulas => {
-      expect(Math.round(formulas.computeKumawakamaruLevel(BASE_LEVEL, OLD_LEVEL, ALPHA))).toBe(3);
+    it('should return 6 when given (100, 1, 0.8)', inject(formulas => {
+      expect(Math.round(formulas.computeKumawakamaruLevel(BASE_LEVEL, OLD_LEVEL, ALPHA))).toBe(6);
     }));
   });
 
