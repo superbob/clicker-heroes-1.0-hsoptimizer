@@ -14,7 +14,8 @@
       <a href="https://www.reddit.com/r/ClickerHeroes/comments/4rrbpi/math_outsiders_rule_of_thumb/"><strong>[Math] Outsiders - Rule of Thumb</strong></a>
       by <a href="https://www.reddit.com/user/Stratege1337">/u/Stratege1337</a> for AS optimization.</p>
     <p>It can compute optimized ancients and outsiders levels using idle, active and hybrid builds.</p>
-    <p>You need at least Siyalatas or Fragsworth at level 1 and to have transcended at least once to make it work.</p>
+    <p>You need to have transcended at least once to make the calculator work.</p>
+    <p>You need at least Siyalatas or Fragsworth at level 1 to have HS suggestions.</p>
     <p>Source code is <a href="https://www.github.com/superbob/clicker-heroes-1.0-hsoptimizer">here</a>, feel free to open to
       <a href="https://github.com/superbob/clicker-heroes-1.0-hsoptimizer/issues">issues</a> and
       <a href="https://github.com/superbob/clicker-heroes-1.0-hsoptimizer/pulls">pull requests</a>.</p>
@@ -93,7 +94,10 @@
   </div>
 
   <div class="row" ng-if="main.saveData">
-    <div class="col-md-6">
+    <div class="col-md-6" ng-if="!main.suggestHs">
+      <p>You need at least Siyalatas or Fragsworth to have HS suggestions.</p>
+    </div>
+    <div class="col-md-6" ng-if="main.suggestHs">
       <p>You have {{main.hsInStock | units:useScientificNotation}} HS in stock.</p>
 
       <table class="table table-striped table-condensed">

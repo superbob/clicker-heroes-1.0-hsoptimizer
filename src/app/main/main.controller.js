@@ -16,6 +16,7 @@ export class MainController {
       $scope.hsFromAscend = 0;
       $scope.includeSoulsFromAscend = false;
       $scope.asTotal = 0;
+      $scope.suggestHs = false;
       $scope.error = undefined;
 
       angular.element('#saveData').parent().removeClass('has-error');
@@ -67,10 +68,12 @@ export class MainController {
           if (!saveDataAnalyzer.hasTranscended(saveData)) {
             $scope.error = "Sorry, you need to have transcended at least once to use this calculator";
             angular.element('#saveData').parent().addClass('has-error');
-          } else if (!saveDataAnalyzer.detectPlayStyle(saveData)) {
-            $scope.error = "Sorry, you need to have at least Siyalatas or Fragsworth to use this calculator";
-            angular.element('#saveData').parent().addClass('has-error');
           } else {
+            if (saveDataAnalyzer.detectPlayStyle(saveData)) {
+              $scope.suggestHs = true;
+            } else {
+              $scope.suggestHs = false;
+            }
             $scope.saveData = saveData;
           }
         } catch (e) {
@@ -85,7 +88,7 @@ export class MainController {
       if (saveData) {
         $scope.hsInStock = saveDataAnalyzer.getHsInStock(saveData);
         $scope.ascendZone = saveDataAnalyzer.getAscendZone(saveData);
-        $scope.playStyle = saveDataAnalyzer.detectPlayStyle(saveData);
+        $scope.playStyle = saveDataAnalyzer.detectPlayStyle(saveData) || "idle";
         $scope.hsFromAscend = saveDataAnalyzer.getHsUponAscend(saveData);
         $scope.useScientificNotation = saveDataAnalyzer.getNumberDisplayMode(saveData);
         $scope.asTotal = saveDataAnalyzer.getAncientSoulsTotal(saveData);
@@ -102,18 +105,20 @@ export class MainController {
         if (includeSoulsFromAscend) {
           hs += $scope.hsFromAscend;
         }
-        $scope.ancients = hsoptimizer.computeOptimumLevels(
-          saveDataAnalyzer.getAncients(saveData),
-          saveDataAnalyzer.getOutsiders(saveData),
-          hs,
-          ascendZone,
-          saveDataAnalyzer.getAncientSoulsTotal(saveData),
-          playStyle,
-          hybridRatio);
-        const chorgorlothLevel = saveDataAnalyzer.getOutsiders($scope.saveData)
-          .filter(outsider => outsider.name === 'Chor\'gorloth')[0].level;
+        if ($scope.suggestHs) {
+          $scope.ancients = hsoptimizer.computeOptimumLevels(
+            saveDataAnalyzer.getAncients(saveData),
+            saveDataAnalyzer.getOutsiders(saveData),
+            hs,
+            ascendZone,
+            saveDataAnalyzer.getAncientSoulsTotal(saveData),
+            playStyle,
+            hybridRatio);
+          const chorgorlothLevel = saveDataAnalyzer.getOutsiders($scope.saveData)
+            .filter(outsider => outsider.name === 'Chor\'gorloth')[0].level;
 
-        $scope.totalCost = this.totalCost(mechanics, $scope.ancients, chorgorlothLevel);
+          $scope.totalCost = this.totalCost(mechanics, $scope.ancients, chorgorlothLevel);
+        }
 
         $scope.outsiders = hsoptimizer.computeOptimumAncientSouls(
           saveDataAnalyzer.getOutsiders(saveData),
