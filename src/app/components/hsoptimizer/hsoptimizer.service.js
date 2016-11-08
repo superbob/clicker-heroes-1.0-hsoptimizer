@@ -106,7 +106,11 @@ export default class HSOptimizer {
     // Okay this is a little bit magic... and approximate also, but it's fast !
     // TODO maybe switch to a more simple dichotomy
     let baseOffset = 0;
-    while (remainingHs >= 0 || baseLevelIncrease > 0) {
+    let lastBaseOffset = -1;
+    // Continue until we are no longer able to increase the level without spending more HS than we have,
+    // or until (for large numbers) the next iteration of level increases costs less HS than the available precision
+    while (baseOffset != lastBaseOffset && (remainingHs >= 0 || baseLevelIncrease > 0)) {
+      lastBaseOffset = baseOffset
       remainingHs = hsInStock;
       baseLevelIncrease = -1;
       while (remainingHs >= 0) {
