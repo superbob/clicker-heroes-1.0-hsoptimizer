@@ -51,7 +51,8 @@ export default class HSOptimizer {
       'Fragsworth':   activeOrHybrid(returnBaseLevel, (baseLevel, old, alpha, hybridRatio) => formulas.computeHybridBhaalLevel(baseLevel, hybridRatio)),
       'Kumawakamaru': allStyles(formulas.computeKumawakamaruLevel),
       'Argaiv':       allStyles(returnBaseLevel),
-      'Juggernaut':   activeOrHybrid(formulas.computeActiveJuggernautLevel, (baseLevel, old, alpha, hybridRatio) => formulas.computeHybridJuggernautLevel(baseLevel, hybridRatio))
+      'Juggernaut':   activeOrHybrid(formulas.computeActiveJuggernautLevel, (baseLevel, old, alpha, hybridRatio) => formulas.computeHybridJuggernautLevel(baseLevel, hybridRatio)),
+      'Nogardnit':	  idleAndHybrid(formulas.computeNogardnitLevel)
     };
   }
 

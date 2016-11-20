@@ -33,7 +33,8 @@ export default class Mechanics {
       "Argaiv":       {id: "28", cost: maths.linear},
       "Juggernaut":   {id: "29", cost: maths.polynomial1_5},
       // Iris "30", quadratic
-      "Revolc":       {id: "31", cost: maths.exponential}
+      "Revolc":       {id: "31", cost: maths.exponential},
+      "Nogardnit":    {id: "32", cost: maths.polynomial1_5}
     };
 
     this.outsiders = {

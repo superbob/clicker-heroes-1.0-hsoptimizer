@@ -44,6 +44,10 @@ export default class Formulas {
   computeKumawakamaruLevel(baseLevel, oldKumawakamaruLevel, alpha) {
     return 2.844 * Math.log(baseLevel) - 1.422 * Math.log(alpha) - 1.422 * Math.log(0.25 + Math.exp(-0.01 * oldKumawakamaruLevel)) - 7.014;
   }
+  
+  computeNogardnitLevel(baseLevel) {
+	return Math.pow(0.926 * baseLevel, 0.8);  
+  }
 
   // Formulas taken from https://kepow.org/clickerheroes
   // and https://www.reddit.com/r/ClickerHeroes/comments/3y57jd/updated_rules_of_thumb/
