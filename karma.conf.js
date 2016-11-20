@@ -54,13 +54,12 @@ module.exports = function(config) {
 
     logLevel: 'WARN',
 
-    frameworks: ['phantomjs-shim', 'jasmine'],
+    frameworks: ['jasmine'],
 
     browsers : ['PhantomJS'],
 
     plugins : [
       'karma-phantomjs-launcher',
-      'karma-phantomjs-shim',
       'karma-coverage',
       'karma-jasmine',
       'karma-ng-html2js-preprocessor'
