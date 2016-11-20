@@ -7,7 +7,8 @@ It is based on formulas proposed in
 by [/u/sugima](https://www.reddit.com/user/sugima) and
 [Updated Rules of Thumb!](https://www.reddit.com/r/ClickerHeroes/comments/3y57jd/updated_rules_of_thumb/)
 by [/u/TinDragon](https://www.reddit.com/user/TinDragon) plus some other formulas gathered from
-here and there, to compute the idle, active and hybrid builds.
+here and there, to compute the idle, active and hybrid builds. Nogardnit level is taken from
+[Anyone done the math on Nogardtin yet?](https://www.reddit.com/r/ClickerHeroes/comments/5dc7y9/anyone_done_the_math_on_nogardtin_yet/).
 
 Main formulas can be found in [formulas.service.js](src/app/components/formulas/formulas.service.js).
 
