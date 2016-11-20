@@ -16,6 +16,8 @@ _computeOptimumLevels_ function.
 
 The rest is spread across all the other files.
 
+[![Build Status](https://travis-ci.org/superbob/clicker-heroes-1.0-hsoptimizer.svg?branch=master)](https://travis-ci.org/superbob/clicker-heroes-1.0-hsoptimizer)
+
 ## Development
 
 This project is generated with [Yeoman generator for AngularJS + Gulp](https://github.com/Swiip/generator-gulp-angular)
