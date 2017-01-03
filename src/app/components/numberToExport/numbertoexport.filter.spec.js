@@ -30,4 +30,8 @@ describe('filter numberToExport', () => {
   it('should return 100000000000e30 when given 1e41', inject(numberToExportFilter => {
     expect(numberToExportFilter(1e41)).toBe('100000000000e30');
   }));
+
+  it('should return 100000000000e20 when given 1e31', inject(numberToExportFilter => {
+    expect(numberToExportFilter(1e31)).toBe('100000000000e20');
+  }));
 });
