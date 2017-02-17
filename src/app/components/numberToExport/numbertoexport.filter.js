@@ -1,23 +1,29 @@
 'use strict';
 
 export default function numberToExport() {
-  const limit1 = 1e20;
-  const factor1 = 1e10;
-  const limit2 = 1e30;
-  const factor2 = 1e20;
-  const limit3 = 1e40;
-  const factor3 = 1e30;
+  const limit = 1e20;
+
+  const getLog10 = () => {
+    if (typeof Math.log10 !== typeof undefined) {
+      return Math.log10;
+    } else {
+      return x => Math.log(x) / Math.log(10);
+    }
+  };
+
+  const integralScientificNotation = input => {
+    const log10 = getLog10();
+    const exponent = Math.floor(log10(input));
+    const integralExponent = exponent - 10;
+    const integralSignificand = Math.floor(input / Math.pow(10, integralExponent));
+    return integralSignificand + "e" + integralExponent;
+  };
 
   return function(input) {
-    if (input > limit3) {
-      return Math.floor(input / factor3) + "e30";
+    if (input > limit) {
+      return integralScientificNotation(input);
     }
-    if (input > limit2) {
-      return Math.floor(input / factor2) + "e20";
-    }
-    if (input > limit1) {
-      return Math.floor(input / factor1) + "e10";
-    }
+
     return input.toString();
   }
 }
